@@ -1,0 +1,1537 @@
+## Custom models outputs :
+Classes (6): ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise']
+Image size : 96x96x1  (grayscale)
+Batch size : 32
+-----------------------------------------------------
+Raw distribution:
+  angry        4500
+  disgust      4500
+  fear         4500
+  happy        9690
+  sad          5015
+  surprise     5032
+
+Rebalancing:
+  angry         4500 → 5500 (oversampled)
+  disgust       4500 → 5500 (oversampled)
+  fear          4500 → 5500 (oversampled)
+  happy         9690 → 5500 (undersampled)
+  sad           5015 → 5500 (oversampled)
+  surprise      5032 → 5500 (oversampled)
+
+Train paths : 26400
+Val paths   : 6600
+
+Class weights:
+  angry        1.0000
+  disgust      1.0000
+  fear         1.0000
+  happy        1.0000
+  sad          1.0000
+  surprise     1.0000
+
+Loading val set into RAM for callbacks...
+X_val shape  : (6600, 96, 96, 1)
+X_val RAM    : ~0.24 GB
+Steps/epoch  : 825
+
+Pipeline ready — 0 GB train images in RAM
+
+Verification:
+  Batch shape : (32, 96, 96, 1)
+  Dtype       : <dtype: 'float32'>
+  Pixel range : [0, 255]
+  Label shape : (32, 6)
+  Label dist  : [9 5 5 7 3 3]
+-----------------------------------------------------------
+Steps per epoch : 825
+Augmentation flow:
+  tf.data  → flip / brightness / contrast / shift / zoom  (parallel)
+  generator → RandAugment → MixUp/CutMix → RandomErasing  (per batch)
+-------------------------------------------------------------
+
+==== CustomDeepCNN | Phase 1 — AdamW peak LR=4e-4  70 ep ====
+Epoch 1/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - accuracy: 0.2070 - loss: 1.8406
+Epoch 1: val_accuracy improved from -inf to 0.17455, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   1 | train 0.2332/1.8142  val 0.1745/2.1168  gap +0.059  lr 8.00e-05  ✓
+           ★ New best val_acc: 0.1745 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 66s 49ms/step - accuracy: 0.2071 - loss: 1.8406 - val_accuracy: 0.1745 - val_loss: 2.1168 - learning_rate: 8.0000e-05
+Epoch 2/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.2706 - loss: 1.7796
+Epoch 2: val_accuracy improved from 0.17455 to 0.41167, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   2 | train 0.2857/1.7631  val 0.4117/1.5412  gap -0.126  lr 1.60e-04  ✓
+           ★ New best val_acc: 0.4117 (epoch 2)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.2706 - loss: 1.7796 - val_accuracy: 0.4117 - val_loss: 1.5412 - learning_rate: 1.6000e-04
+Epoch 3/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.3382 - loss: 1.7012
+Epoch 3: val_accuracy did not improve from 0.41167
+  [P1] Ep   3 | train 0.3623/1.6684  val 0.4103/1.5628  gap -0.048  lr 2.40e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.3382 - loss: 1.7011 - val_accuracy: 0.4103 - val_loss: 1.5628 - learning_rate: 2.4000e-04
+Epoch 4/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.4058 - loss: 1.6086
+Epoch 4: val_accuracy improved from 0.41167 to 0.48197, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   4 | train 0.4193/1.5881  val 0.4820/1.4164  gap -0.063  lr 3.20e-04  ✓
+           ★ New best val_acc: 0.4820 (epoch 4)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.4058 - loss: 1.6085 - val_accuracy: 0.4820 - val_loss: 1.4164 - learning_rate: 3.2000e-04
+Epoch 5/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.4415 - loss: 1.5494
+Epoch 5: val_accuracy improved from 0.48197 to 0.51924, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   5 | train 0.4503/1.5350  val 0.5192/1.3206  gap -0.069  lr 4.00e-04  ✓
+           ★ New best val_acc: 0.5192 (epoch 5)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.4415 - loss: 1.5493 - val_accuracy: 0.5192 - val_loss: 1.3206 - learning_rate: 4.0000e-04
+Epoch 6/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.4748 - loss: 1.4960
+Epoch 6: val_accuracy improved from 0.51924 to 0.54288, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   6 | train 0.4843/1.4788  val 0.5429/1.2803  gap -0.059  lr 4.00e-04  ✓
+           ★ New best val_acc: 0.5429 (epoch 6)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.4748 - loss: 1.4959 - val_accuracy: 0.5429 - val_loss: 1.2803 - learning_rate: 4.0000e-04
+Epoch 7/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.4969 - loss: 1.4449
+Epoch 7: val_accuracy improved from 0.54288 to 0.55985, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   7 | train 0.5023/1.4381  val 0.5598/1.2401  gap -0.058  lr 4.00e-04  ✓
+           ★ New best val_acc: 0.5598 (epoch 7)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 37ms/step - accuracy: 0.4969 - loss: 1.4449 - val_accuracy: 0.5598 - val_loss: 1.2401 - learning_rate: 3.9977e-04
+Epoch 8/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.5131 - loss: 1.4123
+Epoch 8: val_accuracy improved from 0.55985 to 0.59394, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   8 | train 0.5233/1.3960  val 0.5939/1.1743  gap -0.071  lr 3.99e-04  ✓
+           ★ New best val_acc: 0.5939 (epoch 8)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.5131 - loss: 1.4122 - val_accuracy: 0.5939 - val_loss: 1.1743 - learning_rate: 3.9907e-04
+Epoch 9/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5230 - loss: 1.3956
+Epoch 9: val_accuracy improved from 0.59394 to 0.63955, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep   9 | train 0.5291/1.3880  val 0.6395/1.0561  gap -0.110  lr 3.98e-04  ✓
+           ★ New best val_acc: 0.6395 (epoch 9)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.5231 - loss: 1.3956 - val_accuracy: 0.6395 - val_loss: 1.0561 - learning_rate: 3.9791e-04
+Epoch 10/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.5380 - loss: 1.3593
+Epoch 10: val_accuracy did not improve from 0.63955
+  [P1] Ep  10 | train 0.5385/1.3625  val 0.6052/1.1338  gap -0.067  lr 3.96e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.5380 - loss: 1.3593 - val_accuracy: 0.6052 - val_loss: 1.1338 - learning_rate: 3.9628e-04
+Epoch 11/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.5360 - loss: 1.3651
+Epoch 11: val_accuracy did not improve from 0.63955
+  [P1] Ep  11 | train 0.5474/1.3491  val 0.6317/1.0697  gap -0.084  lr 3.94e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.5360 - loss: 1.3651 - val_accuracy: 0.6317 - val_loss: 1.0697 - learning_rate: 3.9420e-04
+Epoch 12/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 51ms/step - accuracy: 0.5506 - loss: 1.3470
+Epoch 12: val_accuracy improved from 0.63955 to 0.65000, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  12 | train 0.5567/1.3301  val 0.6500/1.0537  gap -0.093  lr 3.92e-04  ✓
+           ★ New best val_acc: 0.6500 (epoch 12)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 44s 54ms/step - accuracy: 0.5506 - loss: 1.3470 - val_accuracy: 0.6500 - val_loss: 1.0537 - learning_rate: 3.9167e-04
+Epoch 13/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 56ms/step - accuracy: 0.5617 - loss: 1.3264
+Epoch 13: val_accuracy did not improve from 0.65000
+  [P1] Ep  13 | train 0.5639/1.3174  val 0.5606/1.2255  gap +0.003  lr 3.89e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 48s 58ms/step - accuracy: 0.5617 - loss: 1.3264 - val_accuracy: 0.5606 - val_loss: 1.2255 - learning_rate: 3.8869e-04
+Epoch 14/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 48ms/step - accuracy: 0.5725 - loss: 1.3141
+Epoch 14: val_accuracy did not improve from 0.65000
+  [P1] Ep  14 | train 0.5655/1.3148  val 0.6252/1.0927  gap -0.060  lr 3.85e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 41s 50ms/step - accuracy: 0.5725 - loss: 1.3141 - val_accuracy: 0.6252 - val_loss: 1.0927 - learning_rate: 3.8527e-04
+Epoch 15/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.5689 - loss: 1.2959
+Epoch 15: val_accuracy did not improve from 0.65000
+  [P1] Ep  15 | train 0.5751/1.2921  val 0.6055/1.1218  gap -0.030  lr 3.81e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.5689 - loss: 1.2959 - val_accuracy: 0.6055 - val_loss: 1.1218 - learning_rate: 3.8142e-04
+Epoch 16/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.5788 - loss: 1.2881
+Epoch 16: val_accuracy improved from 0.65000 to 0.68864, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  16 | train 0.5837/1.2822  val 0.6886/0.9473  gap -0.105  lr 3.77e-04  ✓
+           ★ New best val_acc: 0.6886 (epoch 16)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.5788 - loss: 1.2881 - val_accuracy: 0.6886 - val_loss: 0.9473 - learning_rate: 3.7715e-04
+Epoch 17/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 43ms/step - accuracy: 0.5803 - loss: 1.2822
+Epoch 17: val_accuracy did not improve from 0.68864
+  [P1] Ep  17 | train 0.5893/1.2735  val 0.6068/1.1185  gap -0.018  lr 3.72e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 45ms/step - accuracy: 0.5804 - loss: 1.2822 - val_accuracy: 0.6068 - val_loss: 1.1185 - learning_rate: 3.7246e-04
+Epoch 18/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 49ms/step - accuracy: 0.5858 - loss: 1.2932
+Epoch 18: val_accuracy did not improve from 0.68864
+  [P1] Ep  18 | train 0.5840/1.2874  val 0.6652/1.0083  gap -0.081  lr 3.67e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 42s 51ms/step - accuracy: 0.5858 - loss: 1.2932 - val_accuracy: 0.6652 - val_loss: 1.0083 - learning_rate: 3.6738e-04
+Epoch 19/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 56ms/step - accuracy: 0.5956 - loss: 1.2553
+Epoch 19: val_accuracy improved from 0.68864 to 0.70621, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  19 | train 0.5989/1.2542  val 0.7062/0.9303  gap -0.107  lr 3.62e-04  ✓
+           ★ New best val_acc: 0.7062 (epoch 19)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 48s 59ms/step - accuracy: 0.5956 - loss: 1.2553 - val_accuracy: 0.7062 - val_loss: 0.9303 - learning_rate: 3.6190e-04
+Epoch 20/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - accuracy: 0.5945 - loss: 1.2665
+Epoch 20: val_accuracy did not improve from 0.70621
+  [P1] Ep  20 | train 0.6022/1.2494  val 0.7033/0.9497  gap -0.101  lr 3.56e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 44ms/step - accuracy: 0.5945 - loss: 1.2665 - val_accuracy: 0.7033 - val_loss: 0.9497 - learning_rate: 3.5605e-04
+Epoch 21/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 44ms/step - accuracy: 0.6063 - loss: 1.2465
+Epoch 21: val_accuracy improved from 0.70621 to 0.71030, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  21 | train 0.6084/1.2397  val 0.7103/0.9220  gap -0.102  lr 3.50e-04  ✓
+           ★ New best val_acc: 0.7103 (epoch 21)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 39s 47ms/step - accuracy: 0.6063 - loss: 1.2465 - val_accuracy: 0.7103 - val_loss: 0.9220 - learning_rate: 3.4983e-04
+Epoch 22/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 53ms/step - accuracy: 0.6059 - loss: 1.2404
+Epoch 22: val_accuracy did not improve from 0.71030
+  [P1] Ep  22 | train 0.6047/1.2448  val 0.6715/0.9976  gap -0.067  lr 3.43e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 45s 55ms/step - accuracy: 0.6059 - loss: 1.2404 - val_accuracy: 0.6715 - val_loss: 0.9976 - learning_rate: 3.4326e-04
+Epoch 23/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.6032 - loss: 1.2459
+Epoch 23: val_accuracy did not improve from 0.71030
+  [P1] Ep  23 | train 0.6132/1.2327  val 0.7083/0.9239  gap -0.095  lr 3.36e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.6032 - loss: 1.2459 - val_accuracy: 0.7083 - val_loss: 0.9239 - learning_rate: 3.3636e-04
+Epoch 24/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 43ms/step - accuracy: 0.6085 - loss: 1.2263
+Epoch 24: val_accuracy did not improve from 0.71030
+  [P1] Ep  24 | train 0.6141/1.2266  val 0.6977/0.9464  gap -0.084  lr 3.29e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 44ms/step - accuracy: 0.6085 - loss: 1.2263 - val_accuracy: 0.6977 - val_loss: 0.9464 - learning_rate: 3.2915e-04
+Epoch 25/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 43ms/step - accuracy: 0.6214 - loss: 1.2145
+Epoch 25: val_accuracy improved from 0.71030 to 0.73333, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  25 | train 0.6166/1.2226  val 0.7333/0.8711  gap -0.117  lr 3.22e-04  ✓
+           ★ New best val_acc: 0.7333 (epoch 25)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 39s 47ms/step - accuracy: 0.6214 - loss: 1.2145 - val_accuracy: 0.7333 - val_loss: 0.8711 - learning_rate: 3.2163e-04
+Epoch 26/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.6104 - loss: 1.2253
+Epoch 26: val_accuracy did not improve from 0.73333
+  [P1] Ep  26 | train 0.6175/1.2146  val 0.6998/0.9332  gap -0.082  lr 3.14e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6105 - loss: 1.2253 - val_accuracy: 0.6998 - val_loss: 0.9332 - learning_rate: 3.1383e-04
+Epoch 27/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 47ms/step - accuracy: 0.6238 - loss: 1.2289
+Epoch 27: val_accuracy did not improve from 0.73333
+  [P1] Ep  27 | train 0.6281/1.2119  val 0.6964/0.9569  gap -0.068  lr 3.06e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 40s 49ms/step - accuracy: 0.6238 - loss: 1.2289 - val_accuracy: 0.6964 - val_loss: 0.9569 - learning_rate: 3.0576e-04
+Epoch 28/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.6182 - loss: 1.2103
+Epoch 28: val_accuracy did not improve from 0.73333
+  [P1] Ep  28 | train 0.6182/1.2164  val 0.6694/0.9761  gap -0.051  lr 2.97e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.6182 - loss: 1.2103 - val_accuracy: 0.6694 - val_loss: 0.9761 - learning_rate: 2.9745e-04
+Epoch 29/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.6210 - loss: 1.1992
+Epoch 29: val_accuracy did not improve from 0.73333
+  [P1] Ep  29 | train 0.6317/1.1857  val 0.7291/0.8735  gap -0.097  lr 2.89e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 37ms/step - accuracy: 0.6210 - loss: 1.1992 - val_accuracy: 0.7291 - val_loss: 0.8735 - learning_rate: 2.8892e-04
+Epoch 30/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.6204 - loss: 1.2170
+Epoch 30: val_accuracy did not improve from 0.73333
+  [P1] Ep  30 | train 0.6229/1.2114  val 0.7230/0.8932  gap -0.100  lr 2.80e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.6204 - loss: 1.2170 - val_accuracy: 0.7230 - val_loss: 0.8932 - learning_rate: 2.8017e-04
+Epoch 31/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6393 - loss: 1.1801
+Epoch 31: val_accuracy did not improve from 0.73333
+  [P1] Ep  31 | train 0.6476/1.1553  val 0.7026/0.9301  gap -0.055  lr 2.71e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6393 - loss: 1.1801 - val_accuracy: 0.7026 - val_loss: 0.9301 - learning_rate: 2.7124e-04
+Epoch 32/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6381 - loss: 1.1762
+Epoch 32: val_accuracy did not improve from 0.73333
+  [P1] Ep  32 | train 0.6406/1.1766  val 0.7288/0.8706  gap -0.088  lr 2.62e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6381 - loss: 1.1762 - val_accuracy: 0.7288 - val_loss: 0.8706 - learning_rate: 2.6215e-04
+Epoch 33/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.6428 - loss: 1.1734
+Epoch 33: val_accuracy did not improve from 0.73333
+  [P1] Ep  33 | train 0.6457/1.1677  val 0.6853/0.9678  gap -0.040  lr 2.53e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.6429 - loss: 1.1734 - val_accuracy: 0.6853 - val_loss: 0.9678 - learning_rate: 2.5291e-04
+Epoch 34/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6428 - loss: 1.1749
+Epoch 34: val_accuracy did not improve from 0.73333
+  [P1] Ep  34 | train 0.6475/1.1575  val 0.7229/0.8779  gap -0.075  lr 2.44e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6428 - loss: 1.1748 - val_accuracy: 0.7229 - val_loss: 0.8779 - learning_rate: 2.4355e-04
+Epoch 35/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - accuracy: 0.6530 - loss: 1.1555
+Epoch 35: val_accuracy improved from 0.73333 to 0.75167, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  35 | train 0.6456/1.1665  val 0.7517/0.8360  gap -0.106  lr 2.34e-04  ✓
+           ★ New best val_acc: 0.7517 (epoch 35)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 45ms/step - accuracy: 0.6530 - loss: 1.1555 - val_accuracy: 0.7517 - val_loss: 0.8360 - learning_rate: 2.3409e-04
+Epoch 36/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.6549 - loss: 1.1537
+Epoch 36: val_accuracy did not improve from 0.75167
+  [P1] Ep  36 | train 0.6579/1.1467  val 0.7427/0.8314  gap -0.085  lr 2.25e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.6549 - loss: 1.1537 - val_accuracy: 0.7427 - val_loss: 0.8314 - learning_rate: 2.2455e-04
+Epoch 37/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.6505 - loss: 1.1669
+Epoch 37: val_accuracy did not improve from 0.75167
+  [P1] Ep  37 | train 0.6566/1.1508  val 0.7342/0.8491  gap -0.078  lr 2.15e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 37ms/step - accuracy: 0.6505 - loss: 1.1669 - val_accuracy: 0.7342 - val_loss: 0.8491 - learning_rate: 2.1495e-04
+Epoch 38/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.6673 - loss: 1.1305
+Epoch 38: val_accuracy did not improve from 0.75167
+  [P1] Ep  38 | train 0.6666/1.1344  val 0.7488/0.8269  gap -0.082  lr 2.05e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 27s 33ms/step - accuracy: 0.6673 - loss: 1.1305 - val_accuracy: 0.7488 - val_loss: 0.8269 - learning_rate: 2.0532e-04
+Epoch 39/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.6552 - loss: 1.1428
+Epoch 39: val_accuracy did not improve from 0.75167
+  [P1] Ep  39 | train 0.6550/1.1442  val 0.7415/0.8285  gap -0.087  lr 1.96e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.6552 - loss: 1.1428 - val_accuracy: 0.7415 - val_loss: 0.8285 - learning_rate: 1.9568e-04
+Epoch 40/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6577 - loss: 1.1340
+Epoch 40: val_accuracy did not improve from 0.75167
+  [P1] Ep  40 | train 0.6661/1.1286  val 0.7482/0.8298  gap -0.082  lr 1.86e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6577 - loss: 1.1340 - val_accuracy: 0.7482 - val_loss: 0.8298 - learning_rate: 1.8605e-04
+Epoch 41/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6643 - loss: 1.1393
+Epoch 41: val_accuracy did not improve from 0.75167
+  [P1] Ep  41 | train 0.6698/1.1223  val 0.7506/0.8225  gap -0.081  lr 1.76e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.6643 - loss: 1.1393 - val_accuracy: 0.7506 - val_loss: 0.8225 - learning_rate: 1.7645e-04
+Epoch 42/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6615 - loss: 1.1378
+Epoch 42: val_accuracy did not improve from 0.75167
+  [P1] Ep  42 | train 0.6667/1.1198  val 0.7500/0.8142  gap -0.083  lr 1.67e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6615 - loss: 1.1378 - val_accuracy: 0.7500 - val_loss: 0.8142 - learning_rate: 1.6691e-04
+Epoch 43/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6735 - loss: 1.1062
+Epoch 43: val_accuracy improved from 0.75167 to 0.76394, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  43 | train 0.6742/1.1109  val 0.7639/0.7963  gap -0.090  lr 1.57e-04  ✓
+           ★ New best val_acc: 0.7639 (epoch 43)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6736 - loss: 1.1062 - val_accuracy: 0.7639 - val_loss: 0.7963 - learning_rate: 1.5745e-04
+Epoch 44/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.6762 - loss: 1.0960
+Epoch 44: val_accuracy did not improve from 0.76394
+  [P1] Ep  44 | train 0.6718/1.1059  val 0.7486/0.8293  gap -0.077  lr 1.48e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.6762 - loss: 1.0960 - val_accuracy: 0.7486 - val_loss: 0.8293 - learning_rate: 1.4809e-04
+Epoch 45/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6798 - loss: 1.0968
+Epoch 45: val_accuracy did not improve from 0.76394
+  [P1] Ep  45 | train 0.6838/1.0885  val 0.7536/0.8141  gap -0.070  lr 1.39e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6798 - loss: 1.0968 - val_accuracy: 0.7536 - val_loss: 0.8141 - learning_rate: 1.3885e-04
+Epoch 46/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.6879 - loss: 1.0976
+Epoch 46: val_accuracy did not improve from 0.76394
+  [P1] Ep  46 | train 0.6906/1.0837  val 0.7455/0.8414  gap -0.055  lr 1.30e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6879 - loss: 1.0976 - val_accuracy: 0.7455 - val_loss: 0.8414 - learning_rate: 1.2976e-04
+Epoch 47/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6891 - loss: 1.0907
+Epoch 47: val_accuracy did not improve from 0.76394
+  [P1] Ep  47 | train 0.6861/1.0973  val 0.7582/0.8092  gap -0.072  lr 1.21e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6891 - loss: 1.0907 - val_accuracy: 0.7582 - val_loss: 0.8092 - learning_rate: 1.2083e-04
+Epoch 48/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.6814 - loss: 1.0969
+Epoch 48: val_accuracy did not improve from 0.76394
+  [P1] Ep  48 | train 0.6872/1.0864  val 0.7427/0.8247  gap -0.056  lr 1.12e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.6814 - loss: 1.0969 - val_accuracy: 0.7427 - val_loss: 0.8247 - learning_rate: 1.1208e-04
+Epoch 49/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.6945 - loss: 1.0774
+Epoch 49: val_accuracy did not improve from 0.76394
+  [P1] Ep  49 | train 0.6839/1.0901  val 0.7530/0.8135  gap -0.069  lr 1.04e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 35ms/step - accuracy: 0.6945 - loss: 1.0775 - val_accuracy: 0.7530 - val_loss: 0.8135 - learning_rate: 1.0355e-04
+Epoch 50/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.7018 - loss: 1.0632
+Epoch 50: val_accuracy improved from 0.76394 to 0.76803, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  50 | train 0.6894/1.0789  val 0.7680/0.7783  gap -0.079  lr 9.52e-05  ✓
+           ★ New best val_acc: 0.7680 (epoch 50)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 37ms/step - accuracy: 0.7018 - loss: 1.0632 - val_accuracy: 0.7680 - val_loss: 0.7783 - learning_rate: 9.5236e-05
+Epoch 51/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6963 - loss: 1.0696
+Epoch 51: val_accuracy improved from 0.76803 to 0.77258, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  51 | train 0.6929/1.0816  val 0.7726/0.7780  gap -0.080  lr 8.72e-05  ✓
+           ★ New best val_acc: 0.7726 (epoch 51)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 36ms/step - accuracy: 0.6962 - loss: 1.0696 - val_accuracy: 0.7726 - val_loss: 0.7780 - learning_rate: 8.7171e-05
+Epoch 52/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6928 - loss: 1.0633
+Epoch 52: val_accuracy improved from 0.77258 to 0.77439, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  52 | train 0.6871/1.0924  val 0.7744/0.7779  gap -0.087  lr 7.94e-05  ✓
+           ★ New best val_acc: 0.7744 (epoch 52)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 36ms/step - accuracy: 0.6928 - loss: 1.0633 - val_accuracy: 0.7744 - val_loss: 0.7779 - learning_rate: 7.9371e-05
+Epoch 53/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.6973 - loss: 1.0736
+Epoch 53: val_accuracy did not improve from 0.77439
+  [P1] Ep  53 | train 0.6988/1.0759  val 0.7697/0.7823  gap -0.071  lr 7.19e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 27s 33ms/step - accuracy: 0.6973 - loss: 1.0736 - val_accuracy: 0.7697 - val_loss: 0.7823 - learning_rate: 7.1854e-05
+Epoch 54/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.6929 - loss: 1.0634
+Epoch 54: val_accuracy improved from 0.77439 to 0.78030, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  54 | train 0.6953/1.0681  val 0.7803/0.7613  gap -0.085  lr 6.46e-05  ✓
+           ★ New best val_acc: 0.7803 (epoch 54)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.6929 - loss: 1.0635 - val_accuracy: 0.7803 - val_loss: 0.7613 - learning_rate: 6.4637e-05
+Epoch 55/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6772 - loss: 1.1078
+Epoch 55: val_accuracy did not improve from 0.78030
+  [P1] Ep  55 | train 0.6920/1.0738  val 0.7779/0.7591  gap -0.086  lr 5.77e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 33ms/step - accuracy: 0.6773 - loss: 1.1078 - val_accuracy: 0.7779 - val_loss: 0.7591 - learning_rate: 5.7738e-05
+Epoch 56/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6836 - loss: 1.1057
+Epoch 56: val_accuracy improved from 0.78030 to 0.78258, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  56 | train 0.6934/1.0784  val 0.7826/0.7466  gap -0.089  lr 5.12e-05  ✓
+           ★ New best val_acc: 0.7826 (epoch 56)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6837 - loss: 1.1056 - val_accuracy: 0.7826 - val_loss: 0.7466 - learning_rate: 5.1172e-05
+Epoch 57/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6926 - loss: 1.0724
+Epoch 57: val_accuracy did not improve from 0.78258
+  [P1] Ep  57 | train 0.6967/1.0693  val 0.7797/0.7616  gap -0.083  lr 4.50e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 39ms/step - accuracy: 0.6926 - loss: 1.0724 - val_accuracy: 0.7797 - val_loss: 0.7616 - learning_rate: 4.4955e-05
+Epoch 58/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.7071 - loss: 1.0474
+Epoch 58: val_accuracy improved from 0.78258 to 0.78682, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  58 | train 0.7030/1.0567  val 0.7868/0.7433  gap -0.084  lr 3.91e-05  ✓
+           ★ New best val_acc: 0.7868 (epoch 58)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.7071 - loss: 1.0474 - val_accuracy: 0.7868 - val_loss: 0.7433 - learning_rate: 3.9101e-05
+Epoch 59/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6931 - loss: 1.0723
+Epoch 59: val_accuracy improved from 0.78682 to 0.78818, saving model to /kaggle/working/models/CustomDeepCNN_p1_best.keras
+  [P1] Ep  59 | train 0.6941/1.0695  val 0.7882/0.7473  gap -0.094  lr 3.36e-05  ✓
+           ★ New best val_acc: 0.7882 (epoch 59)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6931 - loss: 1.0723 - val_accuracy: 0.7882 - val_loss: 0.7473 - learning_rate: 3.3624e-05
+Epoch 60/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - accuracy: 0.7029 - loss: 1.0512
+Epoch 60: val_accuracy did not improve from 0.78818
+  [P1] Ep  60 | train 0.7077/1.0461  val 0.7795/0.7559  gap -0.072  lr 2.85e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 43ms/step - accuracy: 0.7029 - loss: 1.0512 - val_accuracy: 0.7795 - val_loss: 0.7559 - learning_rate: 2.8537e-05
+Epoch 61/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.7006 - loss: 1.0578
+Epoch 61: val_accuracy did not improve from 0.78818
+  [P1] Ep  61 | train 0.7038/1.0521  val 0.7867/0.7426  gap -0.083  lr 2.39e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.7006 - loss: 1.0578 - val_accuracy: 0.7867 - val_loss: 0.7426 - learning_rate: 2.3852e-05
+Epoch 62/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.6993 - loss: 1.0661
+Epoch 62: val_accuracy did not improve from 0.78818
+  [P1] Ep  62 | train 0.7050/1.0528  val 0.7855/0.7452  gap -0.080  lr 1.96e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 33ms/step - accuracy: 0.6993 - loss: 1.0661 - val_accuracy: 0.7855 - val_loss: 0.7452 - learning_rate: 1.9579e-05
+Epoch 63/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7158 - loss: 1.0407
+Epoch 63: val_accuracy did not improve from 0.78818
+  [P1] Ep  63 | train 0.7108/1.0441  val 0.7858/0.7463  gap -0.075  lr 1.57e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7158 - loss: 1.0408 - val_accuracy: 0.7858 - val_loss: 0.7463 - learning_rate: 1.5728e-05
+Epoch 64/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7009 - loss: 1.0557
+Epoch 64: val_accuracy did not improve from 0.78818
+  [P1] Ep  64 | train 0.7013/1.0571  val 0.7814/0.7534  gap -0.080  lr 1.23e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.7009 - loss: 1.0558 - val_accuracy: 0.7814 - val_loss: 0.7534 - learning_rate: 1.2309e-05
+Epoch 65/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7106 - loss: 1.0418
+Epoch 65: val_accuracy did not improve from 0.78818
+  [P1] Ep  65 | train 0.7126/1.0425  val 0.7856/0.7428  gap -0.073  lr 9.33e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7106 - loss: 1.0418 - val_accuracy: 0.7856 - val_loss: 0.7428 - learning_rate: 9.3300e-06
+Epoch 66/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7050 - loss: 1.0493
+Epoch 66: val_accuracy did not improve from 0.78818
+  [P1] Ep  66 | train 0.7033/1.0535  val 0.7842/0.7484  gap -0.081  lr 6.80e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.7050 - loss: 1.0493 - val_accuracy: 0.7842 - val_loss: 0.7484 - learning_rate: 6.7971e-06
+Epoch 67/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.7031 - loss: 1.0655
+Epoch 67: val_accuracy did not improve from 0.78818
+  [P1] Ep  67 | train 0.7059/1.0571  val 0.7844/0.7477  gap -0.078  lr 4.72e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 36ms/step - accuracy: 0.7031 - loss: 1.0655 - val_accuracy: 0.7844 - val_loss: 0.7477 - learning_rate: 4.7167e-06
+Epoch 68/70
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 61ms/step - accuracy: 0.7140 - loss: 1.0231
+Epoch 68: val_accuracy did not improve from 0.78818
+  [P1] Ep  68 | train 0.7153/1.0207  val 0.7862/0.7424  gap -0.071  lr 3.09e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 52s 62ms/step - accuracy: 0.7140 - loss: 1.0230 - val_accuracy: 0.7862 - val_loss: 0.7424 - learning_rate: 3.0935e-06
+Epoch 69/70
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 63ms/step - accuracy: 0.6999 - loss: 1.0618
+Epoch 69: val_accuracy did not improve from 0.78818
+  [P1] Ep  69 | train 0.7030/1.0512  val 0.7853/0.7451  gap -0.082  lr 1.93e-06  —  PLATEAU
+825/825 ━━━━━━━━━━━━━━━━━━━━ 53s 65ms/step - accuracy: 0.6999 - loss: 1.0618 - val_accuracy: 0.7853 - val_loss: 0.7451 - learning_rate: 1.9313e-06
+
+  [P1] Best val_acc: 0.7882 at epoch 59
+
+
+==== CustomDeepCNN | Phase 2 — AdamW peak LR=5e-5  35 ep ====
+Epoch 1/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 60ms/step - accuracy: 0.6969 - loss: 0.9872
+Epoch 1: val_accuracy improved from -inf to 0.78727, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep   1 | train 0.7075/0.9602  val 0.7873/0.6086  gap -0.080  lr 1.67e-05  ✓
+           ★ New best val_acc: 0.7873 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 81s 67ms/step - accuracy: 0.6970 - loss: 0.9871 - val_accuracy: 0.7873 - val_loss: 0.6086 - learning_rate: 1.6667e-05
+Epoch 2/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 59ms/step - accuracy: 0.7085 - loss: 0.9537
+Epoch 2: val_accuracy did not improve from 0.78727
+  [P2] Ep   2 | train 0.7094/0.9560  val 0.7800/0.6191  gap -0.071  lr 3.33e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 50s 60ms/step - accuracy: 0.7085 - loss: 0.9537 - val_accuracy: 0.7800 - val_loss: 0.6191 - learning_rate: 3.3333e-05
+Epoch 3/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 52ms/step - accuracy: 0.7004 - loss: 1.0008
+Epoch 3: val_accuracy did not improve from 0.78727
+  [P2] Ep   3 | train 0.7047/0.9796  val 0.7798/0.6093  gap -0.075  lr 5.00e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 44s 54ms/step - accuracy: 0.7004 - loss: 1.0008 - val_accuracy: 0.7798 - val_loss: 0.6093 - learning_rate: 5.0000e-05
+Epoch 4/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6906 - loss: 0.9962
+Epoch 4: val_accuracy did not improve from 0.78727
+  [P2] Ep   4 | train 0.6909/0.9926  val 0.7783/0.6336  gap -0.087  lr 5.00e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6906 - loss: 0.9962 - val_accuracy: 0.7783 - val_loss: 0.6336 - learning_rate: 5.0000e-05
+Epoch 5/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7015 - loss: 0.9526
+Epoch 5: val_accuracy improved from 0.78727 to 0.78833, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep   5 | train 0.6995/0.9558  val 0.7883/0.5921  gap -0.089  lr 4.99e-05  ✓
+           ★ New best val_acc: 0.7883 (epoch 5)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7015 - loss: 0.9526 - val_accuracy: 0.7883 - val_loss: 0.5921 - learning_rate: 4.9880e-05
+Epoch 6/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.7016 - loss: 0.9685
+Epoch 6: val_accuracy did not improve from 0.78833
+  [P2] Ep   6 | train 0.7081/0.9607  val 0.7723/0.6382  gap -0.064  lr 4.95e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.7016 - loss: 0.9685 - val_accuracy: 0.7723 - val_loss: 0.6382 - learning_rate: 4.9521e-05
+Epoch 7/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 41ms/step - accuracy: 0.7090 - loss: 0.9386
+Epoch 7: val_accuracy did not improve from 0.78833
+  [P2] Ep   7 | train 0.7023/0.9620  val 0.7864/0.6086  gap -0.084  lr 4.89e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.7090 - loss: 0.9386 - val_accuracy: 0.7864 - val_loss: 0.6086 - learning_rate: 4.8926e-05
+Epoch 8/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.7028 - loss: 0.9549
+Epoch 8: val_accuracy did not improve from 0.78833
+  [P2] Ep   8 | train 0.6995/0.9544  val 0.7876/0.5971  gap -0.088  lr 4.81e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 37ms/step - accuracy: 0.7028 - loss: 0.9549 - val_accuracy: 0.7876 - val_loss: 0.5971 - learning_rate: 4.8101e-05
+Epoch 9/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.7198 - loss: 0.9205
+Epoch 9: val_accuracy improved from 0.78833 to 0.79015, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep   9 | train 0.7158/0.9287  val 0.7902/0.5943  gap -0.074  lr 4.71e-05  ✓
+           ★ New best val_acc: 0.7902 (epoch 9)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.7198 - loss: 0.9205 - val_accuracy: 0.7902 - val_loss: 0.5943 - learning_rate: 4.7054e-05
+Epoch 10/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.6954 - loss: 0.9635
+Epoch 10: val_accuracy did not improve from 0.79015
+  [P2] Ep  10 | train 0.7052/0.9449  val 0.7753/0.6313  gap -0.070  lr 4.58e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 27s 33ms/step - accuracy: 0.6954 - loss: 0.9634 - val_accuracy: 0.7753 - val_loss: 0.6313 - learning_rate: 4.5795e-05
+Epoch 11/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7101 - loss: 0.9385
+Epoch 11: val_accuracy did not improve from 0.79015
+  [P2] Ep  11 | train 0.7086/0.9487  val 0.7786/0.6083  gap -0.070  lr 4.43e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7101 - loss: 0.9385 - val_accuracy: 0.7786 - val_loss: 0.6083 - learning_rate: 4.4337e-05
+Epoch 12/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.7043 - loss: 0.9704
+Epoch 12: val_accuracy did not improve from 0.79015
+  [P2] Ep  12 | train 0.7117/0.9530  val 0.7852/0.6197  gap -0.073  lr 4.27e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.7043 - loss: 0.9704 - val_accuracy: 0.7852 - val_loss: 0.6197 - learning_rate: 4.2692e-05
+Epoch 13/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.6929 - loss: 0.9843
+Epoch 13: val_accuracy did not improve from 0.79015
+  [P2] Ep  13 | train 0.6965/0.9759  val 0.7847/0.6188  gap -0.088  lr 4.09e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.6929 - loss: 0.9843 - val_accuracy: 0.7847 - val_loss: 0.6188 - learning_rate: 4.0878e-05
+Epoch 14/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.7028 - loss: 0.9655
+Epoch 14: val_accuracy did not improve from 0.79015
+  [P2] Ep  14 | train 0.6995/0.9658  val 0.7764/0.6153  gap -0.077  lr 3.89e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 37ms/step - accuracy: 0.7028 - loss: 0.9655 - val_accuracy: 0.7764 - val_loss: 0.6153 - learning_rate: 3.8911e-05
+Epoch 15/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - accuracy: 0.7061 - loss: 0.9509
+Epoch 15: val_accuracy did not improve from 0.79015
+  [P2] Ep  15 | train 0.7079/0.9490  val 0.7814/0.6184  gap -0.073  lr 3.68e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 36ms/step - accuracy: 0.7061 - loss: 0.9509 - val_accuracy: 0.7814 - val_loss: 0.6184 - learning_rate: 3.6811e-05
+Epoch 16/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7017 - loss: 0.9628
+Epoch 16: val_accuracy did not improve from 0.79015
+  [P2] Ep  16 | train 0.7028/0.9642  val 0.7824/0.6080  gap -0.080  lr 3.46e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.7018 - loss: 0.9628 - val_accuracy: 0.7824 - val_loss: 0.6080 - learning_rate: 3.4598e-05
+Epoch 17/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7152 - loss: 0.9260
+Epoch 17: val_accuracy did not improve from 0.79015
+  [P2] Ep  17 | train 0.7089/0.9376  val 0.7886/0.6004  gap -0.080  lr 3.23e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7152 - loss: 0.9260 - val_accuracy: 0.7886 - val_loss: 0.6004 - learning_rate: 3.2293e-05
+Epoch 18/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.6993 - loss: 0.9804
+Epoch 18: val_accuracy improved from 0.79015 to 0.79197, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep  18 | train 0.7077/0.9580  val 0.7920/0.5863  gap -0.084  lr 2.99e-05  ✓
+           ★ New best val_acc: 0.7920 (epoch 18)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.6994 - loss: 0.9803 - val_accuracy: 0.7920 - val_loss: 0.5863 - learning_rate: 2.9918e-05
+Epoch 19/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.7084 - loss: 0.9512
+Epoch 19: val_accuracy did not improve from 0.79197
+  [P2] Ep  19 | train 0.7054/0.9673  val 0.7902/0.5987  gap -0.085  lr 2.75e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 27s 33ms/step - accuracy: 0.7084 - loss: 0.9512 - val_accuracy: 0.7902 - val_loss: 0.5987 - learning_rate: 2.7496e-05
+Epoch 20/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7124 - loss: 0.9467
+Epoch 20: val_accuracy did not improve from 0.79197
+  [P2] Ep  20 | train 0.7139/0.9411  val 0.7856/0.6030  gap -0.072  lr 2.50e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.7124 - loss: 0.9467 - val_accuracy: 0.7856 - val_loss: 0.6030 - learning_rate: 2.5050e-05
+Epoch 21/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.7078 - loss: 0.9573
+Epoch 21: val_accuracy did not improve from 0.79197
+  [P2] Ep  21 | train 0.7167/0.9445  val 0.7847/0.6053  gap -0.068  lr 2.26e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.7079 - loss: 0.9572 - val_accuracy: 0.7847 - val_loss: 0.6053 - learning_rate: 2.2604e-05
+Epoch 22/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.7127 - loss: 0.9301
+Epoch 22: val_accuracy did not improve from 0.79197
+  [P2] Ep  22 | train 0.7216/0.9217  val 0.7920/0.5894  gap -0.070  lr 2.02e-05  ✓
+           ★ New best val_acc: 0.7920 (epoch 18)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.7127 - loss: 0.9301 - val_accuracy: 0.7920 - val_loss: 0.5894 - learning_rate: 2.0182e-05
+Epoch 23/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7069 - loss: 0.9467
+Epoch 23: val_accuracy improved from 0.79197 to 0.79242, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep  23 | train 0.7140/0.9344  val 0.7924/0.5833  gap -0.078  lr 1.78e-05  ✓
+           ★ New best val_acc: 0.7924 (epoch 23)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.7069 - loss: 0.9467 - val_accuracy: 0.7924 - val_loss: 0.5833 - learning_rate: 1.7807e-05
+Epoch 24/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.7101 - loss: 0.9329
+Epoch 24: val_accuracy improved from 0.79242 to 0.79288, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep  24 | train 0.7156/0.9280  val 0.7929/0.5838  gap -0.077  lr 1.55e-05  ✓
+           ★ New best val_acc: 0.7929 (epoch 24)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 30s 36ms/step - accuracy: 0.7101 - loss: 0.9329 - val_accuracy: 0.7929 - val_loss: 0.5838 - learning_rate: 1.5502e-05
+Epoch 25/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7119 - loss: 0.9502
+Epoch 25: val_accuracy did not improve from 0.79288
+  [P2] Ep  25 | train 0.7118/0.9462  val 0.7877/0.5955  gap -0.076  lr 1.33e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 27s 33ms/step - accuracy: 0.7119 - loss: 0.9502 - val_accuracy: 0.7877 - val_loss: 0.5955 - learning_rate: 1.3289e-05
+Epoch 26/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 44ms/step - accuracy: 0.7306 - loss: 0.9060
+Epoch 26: val_accuracy did not improve from 0.79288
+  [P2] Ep  26 | train 0.7218/0.9217  val 0.7915/0.5897  gap -0.070  lr 1.12e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 38s 46ms/step - accuracy: 0.7306 - loss: 0.9060 - val_accuracy: 0.7915 - val_loss: 0.5897 - learning_rate: 1.1189e-05
+Epoch 27/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.7138 - loss: 0.9408
+Epoch 27: val_accuracy improved from 0.79288 to 0.79561, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep  27 | train 0.7165/0.9343  val 0.7956/0.5777  gap -0.079  lr 9.22e-06  ✓
+           ★ New best val_acc: 0.7956 (epoch 27)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.7138 - loss: 0.9408 - val_accuracy: 0.7956 - val_loss: 0.5777 - learning_rate: 9.2219e-06
+Epoch 28/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7099 - loss: 0.9719
+Epoch 28: val_accuracy did not improve from 0.79561
+  [P2] Ep  28 | train 0.7122/0.9506  val 0.7939/0.5853  gap -0.082  lr 7.41e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 33ms/step - accuracy: 0.7100 - loss: 0.9718 - val_accuracy: 0.7939 - val_loss: 0.5853 - learning_rate: 7.4077e-06
+Epoch 29/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7078 - loss: 0.9508
+Epoch 29: val_accuracy improved from 0.79561 to 0.79758, saving model to /kaggle/working/models/CustomDeepCNN_p2_best.keras
+  [P2] Ep  29 | train 0.7148/0.9393  val 0.7976/0.5793  gap -0.083  lr 5.76e-06  ✓
+           ★ New best val_acc: 0.7976 (epoch 29)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 29s 35ms/step - accuracy: 0.7078 - loss: 0.9508 - val_accuracy: 0.7976 - val_loss: 0.5793 - learning_rate: 5.7634e-06
+Epoch 30/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 31ms/step - accuracy: 0.7172 - loss: 0.9386
+Epoch 30: val_accuracy did not improve from 0.79758
+  [P2] Ep  30 | train 0.7173/0.9305  val 0.7944/0.5862  gap -0.077  lr 4.30e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 27s 33ms/step - accuracy: 0.7172 - loss: 0.9386 - val_accuracy: 0.7944 - val_loss: 0.5862 - learning_rate: 4.3048e-06
+Epoch 31/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7042 - loss: 0.9726
+Epoch 31: val_accuracy did not improve from 0.79758
+  [P2] Ep  31 | train 0.7117/0.9507  val 0.7923/0.5946  gap -0.081  lr 3.05e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 33ms/step - accuracy: 0.7042 - loss: 0.9726 - val_accuracy: 0.7923 - val_loss: 0.5946 - learning_rate: 3.0461e-06
+Epoch 32/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7124 - loss: 0.9285
+Epoch 32: val_accuracy did not improve from 0.79758
+  [P2] Ep  32 | train 0.7156/0.9323  val 0.7909/0.5880  gap -0.075  lr 2.00e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.7124 - loss: 0.9285 - val_accuracy: 0.7909 - val_loss: 0.5880 - learning_rate: 1.9992e-06
+Epoch 33/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7110 - loss: 0.9193
+Epoch 33: val_accuracy did not improve from 0.79758
+  [P2] Ep  33 | train 0.7109/0.9333  val 0.7936/0.5892  gap -0.083  lr 1.17e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.7110 - loss: 0.9193 - val_accuracy: 0.7936 - val_loss: 0.5892 - learning_rate: 1.1743e-06
+Epoch 34/35
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - accuracy: 0.7112 - loss: 0.9338
+Epoch 34: val_accuracy did not improve from 0.79758
+  [P2] Ep  34 | train 0.7161/0.9258  val 0.7929/0.5872  gap -0.077  lr 5.79e-07  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.7112 - loss: 0.9338 - val_accuracy: 0.7929 - val_loss: 0.5872 - learning_rate: 5.7941e-07
+Epoch 35/35
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 33ms/step - accuracy: 0.7271 - loss: 0.9107
+Epoch 35: val_accuracy did not improve from 0.79758
+  [P2] Ep  35 | train 0.7216/0.9248  val 0.7927/0.5845  gap -0.071  lr 2.20e-07  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 28s 34ms/step - accuracy: 0.7270 - loss: 0.9108 - val_accuracy: 0.7927 - val_loss: 0.5845 - learning_rate: 2.2014e-07
+
+  [P2] Best val_acc: 0.7976 at epoch 29
+
+
+  Phase 1 best: 78.82%  |  Phase 2 best: 79.76%
+  Overall best: 79.76%
+
+  Running TTA (6 passes)...
+  CustomDeepCNN TTA val accuracy: 81.59%
+------------------------------------------------------------------------------
+
+======================================================================
+  CustomResNet | Phase 1 — AdamW  peak LR=3e-4  50 ep  patience=12
+======================================================================
+Epoch 1/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 46ms/step - accuracy: 0.2116 - loss: 1.8558
+Epoch 1: val_accuracy improved from -inf to 0.35182, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep   1 | train 0.2279/1.8262  val 0.3518/1.6781  gap -0.124  lr 5.00e-05  ✓
+           ★ New best val_acc: 0.3518 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 98s 58ms/step - accuracy: 0.2117 - loss: 1.8558 - val_accuracy: 0.3518 - val_loss: 1.6781 - learning_rate: 5.0000e-05
+Epoch 2/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.2616 - loss: 1.7826
+Epoch 2: val_accuracy improved from 0.35182 to 0.42909, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep   2 | train 0.2858/1.7574  val 0.4291/1.5476  gap -0.143  lr 1.00e-04  ✓
+           ★ New best val_acc: 0.4291 (epoch 2)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 44ms/step - accuracy: 0.2616 - loss: 1.7826 - val_accuracy: 0.4291 - val_loss: 1.5476 - learning_rate: 1.0000e-04
+Epoch 3/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 43ms/step - accuracy: 0.3350 - loss: 1.7052
+Epoch 3: val_accuracy did not improve from 0.42909
+  [P1] Ep   3 | train 0.3502/1.6811  val 0.2555/2.4675  gap +0.095  lr 1.50e-04  ⚠  OVERFIT
+825/825 ━━━━━━━━━━━━━━━━━━━━ 38s 46ms/step - accuracy: 0.3350 - loss: 1.7051 - val_accuracy: 0.2555 - val_loss: 2.4675 - learning_rate: 1.5000e-04
+Epoch 4/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.3863 - loss: 1.6334
+Epoch 4: val_accuracy improved from 0.42909 to 0.50758, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep   4 | train 0.3996/1.6147  val 0.5076/1.3805  gap -0.108  lr 2.00e-04  ✓
+           ★ New best val_acc: 0.5076 (epoch 4)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 44ms/step - accuracy: 0.3863 - loss: 1.6333 - val_accuracy: 0.5076 - val_loss: 1.3805 - learning_rate: 2.0000e-04
+Epoch 5/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 43ms/step - accuracy: 0.4165 - loss: 1.5916
+Epoch 5: val_accuracy improved from 0.50758 to 0.53909, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep   5 | train 0.4313/1.5717  val 0.5391/1.3115  gap -0.108  lr 2.50e-04  ✓
+           ★ New best val_acc: 0.5391 (epoch 5)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 40s 48ms/step - accuracy: 0.4165 - loss: 1.5916 - val_accuracy: 0.5391 - val_loss: 1.3115 - learning_rate: 2.5000e-04
+Epoch 6/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.4455 - loss: 1.5454
+Epoch 6: val_accuracy did not improve from 0.53909
+  [P1] Ep   6 | train 0.4570/1.5313  val 0.4914/1.4185  gap -0.034  lr 3.00e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 42ms/step - accuracy: 0.4455 - loss: 1.5454 - val_accuracy: 0.4914 - val_loss: 1.4185 - learning_rate: 3.0000e-04
+Epoch 7/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.4732 - loss: 1.5075
+Epoch 7: val_accuracy improved from 0.53909 to 0.59909, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep   7 | train 0.4838/1.4927  val 0.5991/1.1865  gap -0.115  lr 3.00e-04  ✓
+           ★ New best val_acc: 0.5991 (epoch 7)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 45ms/step - accuracy: 0.4732 - loss: 1.5075 - val_accuracy: 0.5991 - val_loss: 1.1865 - learning_rate: 3.0000e-04
+Epoch 8/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.4956 - loss: 1.4591
+Epoch 8: val_accuracy did not improve from 0.59909
+  [P1] Ep   8 | train 0.5019/1.4532  val 0.5758/1.2079  gap -0.074  lr 3.00e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 42ms/step - accuracy: 0.4956 - loss: 1.4591 - val_accuracy: 0.5758 - val_loss: 1.2079 - learning_rate: 2.9962e-04
+Epoch 9/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 40ms/step - accuracy: 0.5143 - loss: 1.4256
+Epoch 9: val_accuracy improved from 0.59909 to 0.61909, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep   9 | train 0.5205/1.4208  val 0.6191/1.1651  gap -0.099  lr 2.98e-04  ✓
+           ★ New best val_acc: 0.6191 (epoch 9)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 44ms/step - accuracy: 0.5143 - loss: 1.4256 - val_accuracy: 0.6191 - val_loss: 1.1651 - learning_rate: 2.9848e-04
+Epoch 10/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5315 - loss: 1.4078
+Epoch 10: val_accuracy did not improve from 0.61909
+  [P1] Ep  10 | train 0.5359/1.3943  val 0.6170/1.1391  gap -0.081  lr 2.97e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.5315 - loss: 1.4078 - val_accuracy: 0.6170 - val_loss: 1.1391 - learning_rate: 2.9658e-04
+Epoch 11/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.5418 - loss: 1.3970
+Epoch 11: val_accuracy did not improve from 0.61909
+  [P1] Ep  11 | train 0.5456/1.3873  val 0.6115/1.1689  gap -0.066  lr 2.94e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.5418 - loss: 1.3970 - val_accuracy: 0.6115 - val_loss: 1.1689 - learning_rate: 2.9394e-04
+Epoch 12/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5426 - loss: 1.3776
+Epoch 12: val_accuracy did not improve from 0.61909
+  [P1] Ep  12 | train 0.5451/1.3665  val 0.5926/1.2034  gap -0.047  lr 2.91e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.5426 - loss: 1.3776 - val_accuracy: 0.5926 - val_loss: 1.2034 - learning_rate: 2.9057e-04
+Epoch 13/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5461 - loss: 1.3789
+Epoch 13: val_accuracy improved from 0.61909 to 0.62697, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  13 | train 0.5516/1.3652  val 0.6270/1.1400  gap -0.075  lr 2.86e-04  ✓
+           ★ New best val_acc: 0.6270 (epoch 13)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 45ms/step - accuracy: 0.5461 - loss: 1.3789 - val_accuracy: 0.6270 - val_loss: 1.1400 - learning_rate: 2.8649e-04
+Epoch 14/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5508 - loss: 1.3711
+Epoch 14: val_accuracy improved from 0.62697 to 0.67197, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  14 | train 0.5568/1.3615  val 0.6720/1.0209  gap -0.115  lr 2.82e-04  ✓
+           ★ New best val_acc: 0.6720 (epoch 14)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 45ms/step - accuracy: 0.5509 - loss: 1.3711 - val_accuracy: 0.6720 - val_loss: 1.0209 - learning_rate: 2.8171e-04
+Epoch 15/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5669 - loss: 1.3275
+Epoch 15: val_accuracy improved from 0.67197 to 0.68242, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  15 | train 0.5676/1.3289  val 0.6824/1.0135  gap -0.115  lr 2.76e-04  ✓
+           ★ New best val_acc: 0.6824 (epoch 15)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 44ms/step - accuracy: 0.5669 - loss: 1.3275 - val_accuracy: 0.6824 - val_loss: 1.0135 - learning_rate: 2.7627e-04
+Epoch 16/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.5794 - loss: 1.3177
+Epoch 16: val_accuracy did not improve from 0.68242
+  [P1] Ep  16 | train 0.5767/1.3194  val 0.6745/1.0087  gap -0.098  lr 2.70e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.5794 - loss: 1.3177 - val_accuracy: 0.6745 - val_loss: 1.0087 - learning_rate: 2.7018e-04
+Epoch 17/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.5778 - loss: 1.3128
+Epoch 17: val_accuracy improved from 0.68242 to 0.68712, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  17 | train 0.5785/1.3168  val 0.6871/0.9995  gap -0.109  lr 2.63e-04  ✓
+           ★ New best val_acc: 0.6871 (epoch 17)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.5778 - loss: 1.3128 - val_accuracy: 0.6871 - val_loss: 0.9995 - learning_rate: 2.6348e-04
+Epoch 18/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.5837 - loss: 1.3075
+Epoch 18: val_accuracy did not improve from 0.68712
+  [P1] Ep  18 | train 0.5939/1.2875  val 0.6865/1.0019  gap -0.093  lr 2.56e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.5837 - loss: 1.3075 - val_accuracy: 0.6865 - val_loss: 1.0019 - learning_rate: 2.5621e-04
+Epoch 19/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.5882 - loss: 1.2990
+Epoch 19: val_accuracy improved from 0.68712 to 0.70197, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  19 | train 0.5921/1.2929  val 0.7020/0.9554  gap -0.110  lr 2.48e-04  ✓
+           ★ New best val_acc: 0.7020 (epoch 19)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.5882 - loss: 1.2990 - val_accuracy: 0.7020 - val_loss: 0.9554 - learning_rate: 2.4840e-04
+Epoch 20/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6018 - loss: 1.2808
+Epoch 20: val_accuracy did not improve from 0.70197
+  [P1] Ep  20 | train 0.6031/1.2781  val 0.6912/1.0098  gap -0.088  lr 2.40e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6018 - loss: 1.2808 - val_accuracy: 0.6912 - val_loss: 1.0098 - learning_rate: 2.4009e-04
+Epoch 21/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6014 - loss: 1.2824
+Epoch 21: val_accuracy did not improve from 0.70197
+  [P1] Ep  21 | train 0.6046/1.2739  val 0.6735/1.0346  gap -0.069  lr 2.31e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6014 - loss: 1.2823 - val_accuracy: 0.6735 - val_loss: 1.0346 - learning_rate: 2.3133e-04
+Epoch 22/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6139 - loss: 1.2535
+Epoch 22: val_accuracy did not improve from 0.70197
+  [P1] Ep  22 | train 0.6197/1.2439  val 0.6729/1.0230  gap -0.053  lr 2.22e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6139 - loss: 1.2535 - val_accuracy: 0.6729 - val_loss: 1.0230 - learning_rate: 2.2215e-04
+Epoch 23/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6086 - loss: 1.2714
+Epoch 23: val_accuracy improved from 0.70197 to 0.71727, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  23 | train 0.6172/1.2556  val 0.7173/0.9236  gap -0.100  lr 2.13e-04  ✓
+           ★ New best val_acc: 0.7173 (epoch 23)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.6086 - loss: 1.2713 - val_accuracy: 0.7173 - val_loss: 0.9236 - learning_rate: 2.1260e-04
+Epoch 24/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6107 - loss: 1.2497
+Epoch 24: val_accuracy did not improve from 0.71727
+  [P1] Ep  24 | train 0.6127/1.2476  val 0.7103/0.9306  gap -0.098  lr 2.03e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6107 - loss: 1.2496 - val_accuracy: 0.7103 - val_loss: 0.9306 - learning_rate: 2.0274e-04
+Epoch 25/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6204 - loss: 1.2488
+Epoch 25: val_accuracy did not improve from 0.71727
+  [P1] Ep  25 | train 0.6210/1.2366  val 0.6855/0.9789  gap -0.064  lr 1.93e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6204 - loss: 1.2488 - val_accuracy: 0.6855 - val_loss: 0.9789 - learning_rate: 1.9262e-04
+Epoch 26/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6260 - loss: 1.2350
+Epoch 26: val_accuracy improved from 0.71727 to 0.71848, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  26 | train 0.6270/1.2274  val 0.7185/0.9307  gap -0.091  lr 1.82e-04  ✓
+           ★ New best val_acc: 0.7185 (epoch 26)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 44ms/step - accuracy: 0.6260 - loss: 1.2350 - val_accuracy: 0.7185 - val_loss: 0.9307 - learning_rate: 1.8228e-04
+Epoch 27/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6358 - loss: 1.1991
+Epoch 27: val_accuracy did not improve from 0.71848
+  [P1] Ep  27 | train 0.6377/1.2101  val 0.7129/0.9453  gap -0.075  lr 1.72e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.6358 - loss: 1.1991 - val_accuracy: 0.7129 - val_loss: 0.9453 - learning_rate: 1.7178e-04
+Epoch 28/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6416 - loss: 1.2005
+Epoch 28: val_accuracy improved from 0.71848 to 0.72439, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  28 | train 0.6420/1.2044  val 0.7244/0.9118  gap -0.082  lr 1.61e-04  ✓
+           ★ New best val_acc: 0.7244 (epoch 28)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6416 - loss: 1.2005 - val_accuracy: 0.7244 - val_loss: 0.9118 - learning_rate: 1.6117e-04
+Epoch 29/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6237 - loss: 1.2325
+Epoch 29: val_accuracy did not improve from 0.72439
+  [P1] Ep  29 | train 0.6328/1.2155  val 0.7173/0.9222  gap -0.085  lr 1.50e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6237 - loss: 1.2325 - val_accuracy: 0.7173 - val_loss: 0.9222 - learning_rate: 1.5050e-04
+Epoch 30/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6398 - loss: 1.2206
+Epoch 30: val_accuracy improved from 0.72439 to 0.73879, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  30 | train 0.6420/1.2117  val 0.7388/0.8856  gap -0.097  lr 1.40e-04  ✓
+           ★ New best val_acc: 0.7388 (epoch 30)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 43ms/step - accuracy: 0.6398 - loss: 1.2206 - val_accuracy: 0.7388 - val_loss: 0.8856 - learning_rate: 1.3983e-04
+Epoch 31/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6471 - loss: 1.2004
+Epoch 31: val_accuracy did not improve from 0.73879
+  [P1] Ep  31 | train 0.6489/1.1873  val 0.7350/0.8800  gap -0.086  lr 1.29e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6471 - loss: 1.2004 - val_accuracy: 0.7350 - val_loss: 0.8800 - learning_rate: 1.2922e-04
+Epoch 32/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6529 - loss: 1.1840
+Epoch 32: val_accuracy did not improve from 0.73879
+  [P1] Ep  32 | train 0.6594/1.1723  val 0.7250/0.8987  gap -0.066  lr 1.19e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6530 - loss: 1.1840 - val_accuracy: 0.7250 - val_loss: 0.8987 - learning_rate: 1.1872e-04
+Epoch 33/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6651 - loss: 1.1373
+Epoch 33: val_accuracy improved from 0.73879 to 0.74758, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  33 | train 0.6558/1.1631  val 0.7476/0.8628  gap -0.092  lr 1.08e-04  ✓
+           ★ New best val_acc: 0.7476 (epoch 33)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6650 - loss: 1.1374 - val_accuracy: 0.7476 - val_loss: 0.8628 - learning_rate: 1.0838e-04
+Epoch 34/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6680 - loss: 1.1355
+Epoch 34: val_accuracy did not improve from 0.74758
+  [P1] Ep  34 | train 0.6636/1.1548  val 0.7203/0.9080  gap -0.057  lr 9.83e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6680 - loss: 1.1355 - val_accuracy: 0.7203 - val_loss: 0.9080 - learning_rate: 9.8255e-05
+Epoch 35/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6582 - loss: 1.1700
+Epoch 35: val_accuracy improved from 0.74758 to 0.75000, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  35 | train 0.6594/1.1630  val 0.7500/0.8491  gap -0.091  lr 8.84e-05  ✓
+           ★ New best val_acc: 0.7500 (epoch 35)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 43ms/step - accuracy: 0.6582 - loss: 1.1700 - val_accuracy: 0.7500 - val_loss: 0.8491 - learning_rate: 8.8395e-05
+Epoch 36/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6622 - loss: 1.1631
+Epoch 36: val_accuracy improved from 0.75000 to 0.75636, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  36 | train 0.6597/1.1719  val 0.7564/0.8375  gap -0.097  lr 7.89e-05  ✓
+           ★ New best val_acc: 0.7564 (epoch 36)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 43ms/step - accuracy: 0.6622 - loss: 1.1631 - val_accuracy: 0.7564 - val_loss: 0.8375 - learning_rate: 7.8852e-05
+Epoch 37/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6616 - loss: 1.1588
+Epoch 37: val_accuracy did not improve from 0.75636
+  [P1] Ep  37 | train 0.6715/1.1421  val 0.7535/0.8393  gap -0.082  lr 6.97e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6616 - loss: 1.1587 - val_accuracy: 0.7535 - val_loss: 0.8393 - learning_rate: 6.9674e-05
+Epoch 38/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6698 - loss: 1.1493
+Epoch 38: val_accuracy improved from 0.75636 to 0.75788, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  38 | train 0.6733/1.1432  val 0.7579/0.8390  gap -0.085  lr 6.09e-05  ✓
+           ★ New best val_acc: 0.7579 (epoch 38)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.6698 - loss: 1.1493 - val_accuracy: 0.7579 - val_loss: 0.8390 - learning_rate: 6.0908e-05
+Epoch 39/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6737 - loss: 1.1361
+Epoch 39: val_accuracy improved from 0.75788 to 0.76409, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  39 | train 0.6707/1.1511  val 0.7641/0.8246  gap -0.093  lr 5.26e-05  ✓
+           ★ New best val_acc: 0.7641 (epoch 39)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6737 - loss: 1.1361 - val_accuracy: 0.7641 - val_loss: 0.8246 - learning_rate: 5.2598e-05
+Epoch 40/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6788 - loss: 1.1168
+Epoch 40: val_accuracy did not improve from 0.76409
+  [P1] Ep  40 | train 0.6845/1.1159  val 0.7609/0.8250  gap -0.076  lr 4.48e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6788 - loss: 1.1168 - val_accuracy: 0.7609 - val_loss: 0.8250 - learning_rate: 4.4788e-05
+Epoch 41/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6846 - loss: 1.1214
+Epoch 41: val_accuracy improved from 0.76409 to 0.77409, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  41 | train 0.6844/1.1250  val 0.7741/0.8029  gap -0.090  lr 3.75e-05  ✓
+           ★ New best val_acc: 0.7741 (epoch 41)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 44ms/step - accuracy: 0.6846 - loss: 1.1215 - val_accuracy: 0.7741 - val_loss: 0.8029 - learning_rate: 3.7515e-05
+Epoch 42/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6741 - loss: 1.1543
+Epoch 42: val_accuracy did not improve from 0.77409
+  [P1] Ep  42 | train 0.6793/1.1433  val 0.7664/0.8103  gap -0.087  lr 3.08e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6741 - loss: 1.1543 - val_accuracy: 0.7664 - val_loss: 0.8103 - learning_rate: 3.0819e-05
+Epoch 43/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6895 - loss: 1.1028
+Epoch 43: val_accuracy did not improve from 0.77409
+  [P1] Ep  43 | train 0.6877/1.1113  val 0.7700/0.8014  gap -0.082  lr 2.47e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6895 - loss: 1.1029 - val_accuracy: 0.7700 - val_loss: 0.8014 - learning_rate: 2.4733e-05
+Epoch 44/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6797 - loss: 1.1267
+Epoch 44: val_accuracy improved from 0.77409 to 0.77545, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  44 | train 0.6817/1.1229  val 0.7755/0.8018  gap -0.094  lr 1.93e-05  ✓
+           ★ New best val_acc: 0.7755 (epoch 44)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6797 - loss: 1.1267 - val_accuracy: 0.7755 - val_loss: 0.8018 - learning_rate: 1.9287e-05
+Epoch 45/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6859 - loss: 1.1225
+Epoch 45: val_accuracy did not improve from 0.77545
+  [P1] Ep  45 | train 0.6875/1.1178  val 0.7741/0.8065  gap -0.087  lr 1.45e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6859 - loss: 1.1225 - val_accuracy: 0.7741 - val_loss: 0.8065 - learning_rate: 1.4510e-05
+Epoch 46/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6867 - loss: 1.1116
+Epoch 46: val_accuracy improved from 0.77545 to 0.77576, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  46 | train 0.6879/1.1115  val 0.7758/0.8014  gap -0.088  lr 1.04e-05  ✓
+           ★ New best val_acc: 0.7758 (epoch 46)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.6867 - loss: 1.1116 - val_accuracy: 0.7758 - val_loss: 0.8014 - learning_rate: 1.0426e-05
+Epoch 47/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6908 - loss: 1.1102
+Epoch 47: val_accuracy did not improve from 0.77576
+  [P1] Ep  47 | train 0.6918/1.1005  val 0.7756/0.7977  gap -0.084  lr 7.06e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6908 - loss: 1.1102 - val_accuracy: 0.7756 - val_loss: 0.7977 - learning_rate: 7.0558e-06
+Epoch 48/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6843 - loss: 1.1325
+Epoch 48: val_accuracy did not improve from 0.77576
+  [P1] Ep  48 | train 0.6909/1.1179  val 0.7755/0.7964  gap -0.085  lr 4.42e-06  —  PLATEAU
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6843 - loss: 1.1324 - val_accuracy: 0.7755 - val_loss: 0.7964 - learning_rate: 4.4165e-06
+Epoch 49/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7071 - loss: 1.0870
+Epoch 49: val_accuracy improved from 0.77576 to 0.77606, saving model to /kaggle/working/models/CustomResNet_p1_best.keras
+  [P1] Ep  49 | train 0.6998/1.0943  val 0.7761/0.7962  gap -0.076  lr 2.52e-06  —  PLATEAU
+           ★ New best val_acc: 0.7761 (epoch 49)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 44ms/step - accuracy: 0.7071 - loss: 1.0870 - val_accuracy: 0.7761 - val_loss: 0.7962 - learning_rate: 2.5217e-06
+Epoch 50/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6937 - loss: 1.0939
+Epoch 50: val_accuracy did not improve from 0.77606
+  [P1] Ep  50 | train 0.6877/1.1062  val 0.7747/0.7982  gap -0.087  lr 1.38e-06  —  PLATEAU
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6937 - loss: 1.0940 - val_accuracy: 0.7747 - val_loss: 0.7982 - learning_rate: 1.3809e-06
+
+  [P1] Best val_acc: 0.7761 at epoch 49
+
+
+======================================================================
+  CustomResNet | Phase 2 — AdamW  peak LR=4e-5  30 ep  patience=10
+======================================================================
+Epoch 1/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6883 - loss: 1.0668
+Epoch 1: val_accuracy improved from -inf to 0.77364, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep   1 | train 0.6878/1.0669  val 0.7736/0.7298  gap -0.086  lr 2.00e-05  ✓
+           ★ New best val_acc: 0.7736 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 94s 51ms/step - accuracy: 0.6883 - loss: 1.0668 - val_accuracy: 0.7736 - val_loss: 0.7298 - learning_rate: 2.0000e-05
+Epoch 2/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 46ms/step - accuracy: 0.6880 - loss: 1.0759
+Epoch 2: val_accuracy did not improve from 0.77364
+  [P2] Ep   2 | train 0.6861/1.0752  val 0.7685/0.7412  gap -0.082  lr 4.00e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 40s 49ms/step - accuracy: 0.6880 - loss: 1.0759 - val_accuracy: 0.7685 - val_loss: 0.7412 - learning_rate: 4.0000e-05
+Epoch 3/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6831 - loss: 1.0712
+Epoch 3: val_accuracy did not improve from 0.77364
+  [P2] Ep   3 | train 0.6842/1.0696  val 0.7703/0.7371  gap -0.086  lr 4.00e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6831 - loss: 1.0712 - val_accuracy: 0.7703 - val_loss: 0.7371 - learning_rate: 4.0000e-05
+Epoch 4/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6871 - loss: 1.0499
+Epoch 4: val_accuracy did not improve from 0.77364
+  [P2] Ep   4 | train 0.6889/1.0492  val 0.7665/0.7366  gap -0.078  lr 3.99e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6871 - loss: 1.0499 - val_accuracy: 0.7665 - val_loss: 0.7366 - learning_rate: 3.9875e-05
+Epoch 5/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6869 - loss: 1.0579
+Epoch 5: val_accuracy did not improve from 0.77364
+  [P2] Ep   5 | train 0.6967/1.0424  val 0.7683/0.7313  gap -0.072  lr 3.95e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6870 - loss: 1.0579 - val_accuracy: 0.7683 - val_loss: 0.7313 - learning_rate: 3.9500e-05
+Epoch 6/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6795 - loss: 1.0841
+Epoch 6: val_accuracy did not improve from 0.77364
+  [P2] Ep   6 | train 0.6889/1.0604  val 0.7682/0.7366  gap -0.079  lr 3.89e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6795 - loss: 1.0841 - val_accuracy: 0.7682 - val_loss: 0.7366 - learning_rate: 3.8880e-05
+Epoch 7/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6926 - loss: 1.0617
+Epoch 7: val_accuracy did not improve from 0.77364
+  [P2] Ep   7 | train 0.6925/1.0551  val 0.7674/0.7388  gap -0.075  lr 3.80e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6926 - loss: 1.0617 - val_accuracy: 0.7674 - val_loss: 0.7388 - learning_rate: 3.8024e-05
+Epoch 8/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6907 - loss: 1.0492
+Epoch 8: val_accuracy did not improve from 0.77364
+  [P2] Ep   8 | train 0.6930/1.0465  val 0.7736/0.7219  gap -0.081  lr 3.69e-05  ✓
+           ★ New best val_acc: 0.7736 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6907 - loss: 1.0492 - val_accuracy: 0.7736 - val_loss: 0.7219 - learning_rate: 3.6942e-05
+Epoch 9/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6939 - loss: 1.0527
+Epoch 9: val_accuracy did not improve from 0.77364
+  [P2] Ep   9 | train 0.6917/1.0542  val 0.7705/0.7298  gap -0.079  lr 3.56e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6939 - loss: 1.0527 - val_accuracy: 0.7705 - val_loss: 0.7298 - learning_rate: 3.5648e-05
+Epoch 10/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6900 - loss: 1.0706
+Epoch 10: val_accuracy improved from 0.77364 to 0.77545, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  10 | train 0.6859/1.0705  val 0.7755/0.7252  gap -0.090  lr 3.42e-05  ✓
+           ★ New best val_acc: 0.7755 (epoch 10)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6900 - loss: 1.0706 - val_accuracy: 0.7755 - val_loss: 0.7252 - learning_rate: 3.4157e-05
+Epoch 11/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6914 - loss: 1.0565
+Epoch 11: val_accuracy did not improve from 0.77545
+  [P2] Ep  11 | train 0.6852/1.0732  val 0.7721/0.7353  gap -0.087  lr 3.25e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6914 - loss: 1.0565 - val_accuracy: 0.7721 - val_loss: 0.7353 - learning_rate: 3.2489e-05
+Epoch 12/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 46ms/step - accuracy: 0.6989 - loss: 1.0473
+Epoch 12: val_accuracy improved from 0.77545 to 0.77652, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  12 | train 0.6913/1.0553  val 0.7765/0.7242  gap -0.085  lr 3.07e-05  ✓
+           ★ New best val_acc: 0.7765 (epoch 12)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 42s 50ms/step - accuracy: 0.6989 - loss: 1.0473 - val_accuracy: 0.7765 - val_loss: 0.7242 - learning_rate: 3.0664e-05
+Epoch 13/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 45ms/step - accuracy: 0.6948 - loss: 1.0374
+Epoch 13: val_accuracy did not improve from 0.77652
+  [P2] Ep  13 | train 0.6947/1.0429  val 0.7688/0.7392  gap -0.074  lr 2.87e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 39s 47ms/step - accuracy: 0.6948 - loss: 1.0375 - val_accuracy: 0.7688 - val_loss: 0.7392 - learning_rate: 2.8706e-05
+Epoch 14/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6844 - loss: 1.0874
+Epoch 14: val_accuracy improved from 0.77652 to 0.77955, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  14 | train 0.6924/1.0669  val 0.7795/0.7122  gap -0.087  lr 2.66e-05  ✓
+           ★ New best val_acc: 0.7795 (epoch 14)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6845 - loss: 1.0874 - val_accuracy: 0.7795 - val_loss: 0.7122 - learning_rate: 2.6639e-05
+Epoch 15/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6902 - loss: 1.0670
+Epoch 15: val_accuracy improved from 0.77955 to 0.78182, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  15 | train 0.6931/1.0628  val 0.7818/0.7076  gap -0.089  lr 2.45e-05  ✓
+           ★ New best val_acc: 0.7818 (epoch 15)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6902 - loss: 1.0670 - val_accuracy: 0.7818 - val_loss: 0.7076 - learning_rate: 2.4489e-05
+Epoch 16/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7055 - loss: 1.0307
+Epoch 16: val_accuracy did not improve from 0.78182
+  [P2] Ep  16 | train 0.7005/1.0451  val 0.7808/0.7071  gap -0.080  lr 2.23e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.7055 - loss: 1.0308 - val_accuracy: 0.7808 - val_loss: 0.7071 - learning_rate: 2.2284e-05
+Epoch 17/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7007 - loss: 1.0358
+Epoch 17: val_accuracy improved from 0.78182 to 0.78242, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  17 | train 0.7059/1.0250  val 0.7824/0.6992  gap -0.076  lr 2.00e-05  ✓
+           ★ New best val_acc: 0.7824 (epoch 17)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.7007 - loss: 1.0358 - val_accuracy: 0.7824 - val_loss: 0.6992 - learning_rate: 2.0050e-05
+Epoch 18/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7114 - loss: 0.9995
+Epoch 18: val_accuracy did not improve from 0.78242
+  [P2] Ep  18 | train 0.7066/1.0149  val 0.7798/0.7058  gap -0.073  lr 1.78e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7114 - loss: 0.9995 - val_accuracy: 0.7798 - val_loss: 0.7058 - learning_rate: 1.7816e-05
+Epoch 19/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7043 - loss: 1.0161
+Epoch 19: val_accuracy improved from 0.78242 to 0.78303, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  19 | train 0.7038/1.0330  val 0.7830/0.7054  gap -0.079  lr 1.56e-05  ✓
+           ★ New best val_acc: 0.7830 (epoch 19)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.7043 - loss: 1.0161 - val_accuracy: 0.7830 - val_loss: 0.7054 - learning_rate: 1.5611e-05
+Epoch 20/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6940 - loss: 1.0598
+Epoch 20: val_accuracy did not improve from 0.78303
+  [P2] Ep  20 | train 0.6947/1.0516  val 0.7814/0.7114  gap -0.087  lr 1.35e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6940 - loss: 1.0598 - val_accuracy: 0.7814 - val_loss: 0.7114 - learning_rate: 1.3461e-05
+Epoch 21/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7131 - loss: 1.0104
+Epoch 21: val_accuracy did not improve from 0.78303
+  [P2] Ep  21 | train 0.7111/1.0215  val 0.7827/0.7049  gap -0.072  lr 1.14e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.7131 - loss: 1.0104 - val_accuracy: 0.7827 - val_loss: 0.7049 - learning_rate: 1.1394e-05
+Epoch 22/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7155 - loss: 0.9977
+Epoch 22: val_accuracy did not improve from 0.78303
+  [P2] Ep  22 | train 0.7172/1.0029  val 0.7823/0.7017  gap -0.065  lr 9.44e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7155 - loss: 0.9977 - val_accuracy: 0.7823 - val_loss: 0.7017 - learning_rate: 9.4360e-06
+Epoch 23/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7019 - loss: 1.0409
+Epoch 23: val_accuracy did not improve from 0.78303
+  [P2] Ep  23 | train 0.7047/1.0278  val 0.7818/0.7052  gap -0.077  lr 7.61e-06  —  PLATEAU
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.7019 - loss: 1.0408 - val_accuracy: 0.7818 - val_loss: 0.7052 - learning_rate: 7.6114e-06
+Epoch 24/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7068 - loss: 1.0276
+Epoch 24: val_accuracy improved from 0.78303 to 0.78394, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  24 | train 0.7091/1.0267  val 0.7839/0.7023  gap -0.075  lr 5.94e-06  ✓
+           ★ New best val_acc: 0.7839 (epoch 24)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.7068 - loss: 1.0276 - val_accuracy: 0.7839 - val_loss: 0.7023 - learning_rate: 5.9432e-06
+Epoch 25/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6995 - loss: 1.0483
+Epoch 25: val_accuracy did not improve from 0.78394
+  [P2] Ep  25 | train 0.7072/1.0361  val 0.7838/0.7064  gap -0.077  lr 4.45e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6995 - loss: 1.0483 - val_accuracy: 0.7838 - val_loss: 0.7064 - learning_rate: 4.4525e-06
+Epoch 26/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7060 - loss: 1.0303
+Epoch 26: val_accuracy did not improve from 0.78394
+  [P2] Ep  26 | train 0.7106/1.0218  val 0.7833/0.7020  gap -0.073  lr 3.16e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.7060 - loss: 1.0303 - val_accuracy: 0.7833 - val_loss: 0.7020 - learning_rate: 3.1579e-06
+Epoch 27/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7177 - loss: 1.0064
+Epoch 27: val_accuracy did not improve from 0.78394
+  [P2] Ep  27 | train 0.7091/1.0193  val 0.7830/0.7027  gap -0.074  lr 2.08e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.7177 - loss: 1.0064 - val_accuracy: 0.7830 - val_loss: 0.7027 - learning_rate: 2.0757e-06
+Epoch 28/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7153 - loss: 1.0183
+Epoch 28: val_accuracy improved from 0.78394 to 0.78485, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  28 | train 0.7144/1.0125  val 0.7848/0.7000  gap -0.070  lr 1.22e-06  —  PLATEAU
+           ★ New best val_acc: 0.7848 (epoch 28)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.7153 - loss: 1.0183 - val_accuracy: 0.7848 - val_loss: 0.7000 - learning_rate: 1.2195e-06
+Epoch 29/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7025 - loss: 1.0408
+Epoch 29: val_accuracy did not improve from 0.78485
+  [P2] Ep  29 | train 0.7037/1.0403  val 0.7835/0.7040  gap -0.080  lr 6.00e-07  —  PLATEAU
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.7025 - loss: 1.0408 - val_accuracy: 0.7835 - val_loss: 0.7040 - learning_rate: 6.0019e-07
+Epoch 30/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7104 - loss: 1.0304
+Epoch 30: val_accuracy improved from 0.78485 to 0.78500, saving model to /kaggle/working/models/CustomResNet_p2_best.keras
+  [P2] Ep  30 | train 0.7193/1.0040  val 0.7850/0.6980  gap -0.066  lr 2.25e-07  —  PLATEAU
+           ★ New best val_acc: 0.7850 (epoch 30)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.7104 - loss: 1.0303 - val_accuracy: 0.7850 - val_loss: 0.6980 - learning_rate: 2.2544e-07
+
+  [P2] Best val_acc: 0.7850 at epoch 30
+
+
+======================================================================
+  Phase 1 best: 77.61%  |  Phase 2 best: 78.50%
+  Overall best: 78.50%
+======================================================================
+
+  Running TTA (6 passes)...
+  CustomResNet TTA val accuracy: 79.82%
+------------------------------------------------------------------------------------
+
+======================================================================
+  CustomSEResNet | Phase 1 — AdamW  peak LR=2e-4  50 ep  patience=12
+======================================================================
+Epoch 1/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.1959 - loss: 1.8681
+Epoch 1: val_accuracy improved from -inf to 0.23364, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep   1 | train 0.2106/1.8439  val 0.2336/1.7776  gap -0.023  lr 2.50e-05  ✓
+           ★ New best val_acc: 0.2336 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 89s 50ms/step - accuracy: 0.1959 - loss: 1.8681 - val_accuracy: 0.2336 - val_loss: 1.7776 - learning_rate: 2.5000e-05
+Epoch 2/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.2474 - loss: 1.8025
+Epoch 2: val_accuracy improved from 0.23364 to 0.37545, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep   2 | train 0.2665/1.7855  val 0.3755/1.6057  gap -0.109  lr 5.00e-05  ✓
+           ★ New best val_acc: 0.3755 (epoch 2)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.2475 - loss: 1.8024 - val_accuracy: 0.3755 - val_loss: 1.6057 - learning_rate: 5.0000e-05
+Epoch 3/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.3068 - loss: 1.7430
+Epoch 3: val_accuracy did not improve from 0.37545
+  [P1] Ep   3 | train 0.3280/1.7191  val 0.3041/1.8169  gap +0.024  lr 7.50e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.3068 - loss: 1.7429 - val_accuracy: 0.3041 - val_loss: 1.8169 - learning_rate: 7.5000e-05
+Epoch 4/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.3638 - loss: 1.6649
+Epoch 4: val_accuracy improved from 0.37545 to 0.49061, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep   4 | train 0.3787/1.6473  val 0.4906/1.4181  gap -0.112  lr 1.00e-04  ✓
+           ★ New best val_acc: 0.4906 (epoch 4)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.3638 - loss: 1.6649 - val_accuracy: 0.4906 - val_loss: 1.4181 - learning_rate: 1.0000e-04
+Epoch 5/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.4097 - loss: 1.6103
+Epoch 5: val_accuracy improved from 0.49061 to 0.55864, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep   5 | train 0.4189/1.5951  val 0.5586/1.2651  gap -0.140  lr 1.25e-04  ✓
+           ★ New best val_acc: 0.5586 (epoch 5)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.4097 - loss: 1.6103 - val_accuracy: 0.5586 - val_loss: 1.2651 - learning_rate: 1.2500e-04
+Epoch 6/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.4430 - loss: 1.5613
+Epoch 6: val_accuracy did not improve from 0.55864
+  [P1] Ep   6 | train 0.4470/1.5544  val 0.5011/1.3907  gap -0.054  lr 1.50e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.4430 - loss: 1.5613 - val_accuracy: 0.5011 - val_loss: 1.3907 - learning_rate: 1.5000e-04
+Epoch 7/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.4641 - loss: 1.5226
+Epoch 7: val_accuracy improved from 0.55864 to 0.60455, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep   7 | train 0.4691/1.5152  val 0.6045/1.1885  gap -0.135  lr 1.75e-04  ✓
+           ★ New best val_acc: 0.6045 (epoch 7)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.4641 - loss: 1.5226 - val_accuracy: 0.6045 - val_loss: 1.1885 - learning_rate: 1.7500e-04
+Epoch 8/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.4804 - loss: 1.4978
+Epoch 8: val_accuracy did not improve from 0.60455
+  [P1] Ep   8 | train 0.4938/1.4756  val 0.5436/1.3160  gap -0.050  lr 2.00e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.4804 - loss: 1.4978 - val_accuracy: 0.5436 - val_loss: 1.3160 - learning_rate: 2.0000e-04
+Epoch 9/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5148 - loss: 1.4435
+Epoch 9: val_accuracy did not improve from 0.60455
+  [P1] Ep   9 | train 0.5150/1.4449  val 0.5127/1.3417  gap +0.002  lr 2.00e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.5148 - loss: 1.4435 - val_accuracy: 0.5127 - val_loss: 1.3417 - learning_rate: 2.0000e-04
+Epoch 10/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.5192 - loss: 1.4388
+Epoch 10: val_accuracy improved from 0.60455 to 0.63182, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  10 | train 0.5227/1.4269  val 0.6318/1.1144  gap -0.109  lr 2.00e-04  ✓
+           ★ New best val_acc: 0.6318 (epoch 10)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 42ms/step - accuracy: 0.5192 - loss: 1.4388 - val_accuracy: 0.6318 - val_loss: 1.1144 - learning_rate: 1.9972e-04
+Epoch 11/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5345 - loss: 1.4107
+Epoch 11: val_accuracy did not improve from 0.63182
+  [P1] Ep  11 | train 0.5350/1.4092  val 0.6221/1.1343  gap -0.087  lr 1.99e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.5345 - loss: 1.4107 - val_accuracy: 0.6221 - val_loss: 1.1343 - learning_rate: 1.9889e-04
+Epoch 12/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5441 - loss: 1.3841
+Epoch 12: val_accuracy did not improve from 0.63182
+  [P1] Ep  12 | train 0.5462/1.3861  val 0.6242/1.1333  gap -0.078  lr 1.98e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.5441 - loss: 1.3841 - val_accuracy: 0.6242 - val_loss: 1.1333 - learning_rate: 1.9751e-04
+Epoch 13/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5512 - loss: 1.3767
+Epoch 13: val_accuracy improved from 0.63182 to 0.64333, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  13 | train 0.5579/1.3719  val 0.6433/1.0965  gap -0.085  lr 1.96e-04  ✓
+           ★ New best val_acc: 0.6433 (epoch 13)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.5513 - loss: 1.3767 - val_accuracy: 0.6433 - val_loss: 1.0965 - learning_rate: 1.9558e-04
+Epoch 14/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5633 - loss: 1.3552
+Epoch 14: val_accuracy improved from 0.64333 to 0.64970, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  14 | train 0.5648/1.3475  val 0.6497/1.0786  gap -0.085  lr 1.93e-04  ✓
+           ★ New best val_acc: 0.6497 (epoch 14)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.5633 - loss: 1.3552 - val_accuracy: 0.6497 - val_loss: 1.0786 - learning_rate: 1.9312e-04
+Epoch 15/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5695 - loss: 1.3318
+Epoch 15: val_accuracy improved from 0.64970 to 0.67515, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  15 | train 0.5722/1.3342  val 0.6752/1.0115  gap -0.103  lr 1.90e-04  ✓
+           ★ New best val_acc: 0.6752 (epoch 15)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.5695 - loss: 1.3318 - val_accuracy: 0.6752 - val_loss: 1.0115 - learning_rate: 1.9015e-04
+Epoch 16/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5742 - loss: 1.3211
+Epoch 16: val_accuracy improved from 0.67515 to 0.67864, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  16 | train 0.5705/1.3308  val 0.6786/1.0184  gap -0.108  lr 1.87e-04  ✓
+           ★ New best val_acc: 0.6786 (epoch 16)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.5742 - loss: 1.3211 - val_accuracy: 0.6786 - val_loss: 1.0184 - learning_rate: 1.8667e-04
+Epoch 17/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5814 - loss: 1.3185
+Epoch 17: val_accuracy did not improve from 0.67864
+  [P1] Ep  17 | train 0.5856/1.3156  val 0.6641/1.0653  gap -0.078  lr 1.83e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.5814 - loss: 1.3185 - val_accuracy: 0.6641 - val_loss: 1.0653 - learning_rate: 1.8271e-04
+Epoch 18/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.5825 - loss: 1.3196
+Epoch 18: val_accuracy improved from 0.67864 to 0.68000, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  18 | train 0.5853/1.3148  val 0.6800/1.0112  gap -0.095  lr 1.78e-04  ✓
+           ★ New best val_acc: 0.6800 (epoch 18)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.5825 - loss: 1.3196 - val_accuracy: 0.6800 - val_loss: 1.0112 - learning_rate: 1.7829e-04
+Epoch 19/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.5897 - loss: 1.2993
+Epoch 19: val_accuracy did not improve from 0.68000
+  [P1] Ep  19 | train 0.6005/1.2811  val 0.6664/1.0200  gap -0.066  lr 1.73e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 42ms/step - accuracy: 0.5898 - loss: 1.2992 - val_accuracy: 0.6664 - val_loss: 1.0200 - learning_rate: 1.7344e-04
+Epoch 20/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6007 - loss: 1.2818
+Epoch 20: val_accuracy improved from 0.68000 to 0.70515, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  20 | train 0.6029/1.2776  val 0.7052/0.9614  gap -0.102  lr 1.68e-04  ✓
+           ★ New best val_acc: 0.7052 (epoch 20)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6007 - loss: 1.2818 - val_accuracy: 0.7052 - val_loss: 0.9614 - learning_rate: 1.6818e-04
+Epoch 21/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.5956 - loss: 1.2827
+Epoch 21: val_accuracy did not improve from 0.70515
+  [P1] Ep  21 | train 0.6011/1.2792  val 0.6408/1.0713  gap -0.040  lr 1.63e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.5956 - loss: 1.2827 - val_accuracy: 0.6408 - val_loss: 1.0713 - learning_rate: 1.6254e-04
+Epoch 22/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.5994 - loss: 1.2783
+Epoch 22: val_accuracy improved from 0.70515 to 0.71015, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  22 | train 0.6092/1.2640  val 0.7102/0.9619  gap -0.101  lr 1.57e-04  ✓
+           ★ New best val_acc: 0.7102 (epoch 22)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.5994 - loss: 1.2783 - val_accuracy: 0.7102 - val_loss: 0.9619 - learning_rate: 1.5655e-04
+Epoch 23/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6246 - loss: 1.2352
+Epoch 23: val_accuracy improved from 0.71015 to 0.72076, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  23 | train 0.6208/1.2422  val 0.7208/0.9251  gap -0.100  lr 1.50e-04  ✓
+           ★ New best val_acc: 0.7208 (epoch 23)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6246 - loss: 1.2352 - val_accuracy: 0.7208 - val_loss: 0.9251 - learning_rate: 1.5025e-04
+Epoch 24/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6125 - loss: 1.2648
+Epoch 24: val_accuracy did not improve from 0.72076
+  [P1] Ep  24 | train 0.6110/1.2638  val 0.7124/0.9468  gap -0.101  lr 1.44e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6125 - loss: 1.2648 - val_accuracy: 0.7124 - val_loss: 0.9468 - learning_rate: 1.4367e-04
+Epoch 25/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6184 - loss: 1.2446
+Epoch 25: val_accuracy improved from 0.72076 to 0.72727, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  25 | train 0.6213/1.2361  val 0.7273/0.9122  gap -0.106  lr 1.37e-04  ✓
+           ★ New best val_acc: 0.7273 (epoch 25)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6184 - loss: 1.2445 - val_accuracy: 0.7273 - val_loss: 0.9122 - learning_rate: 1.3685e-04
+Epoch 26/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6258 - loss: 1.2112
+Epoch 26: val_accuracy improved from 0.72727 to 0.73379, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  26 | train 0.6293/1.2199  val 0.7338/0.9045  gap -0.105  lr 1.30e-04  ✓
+           ★ New best val_acc: 0.7338 (epoch 26)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6258 - loss: 1.2112 - val_accuracy: 0.7338 - val_loss: 0.9045 - learning_rate: 1.2983e-04
+Epoch 27/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6267 - loss: 1.2383
+Epoch 27: val_accuracy did not improve from 0.73379
+  [P1] Ep  27 | train 0.6306/1.2285  val 0.7198/0.9109  gap -0.089  lr 1.23e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.6267 - loss: 1.2383 - val_accuracy: 0.7198 - val_loss: 0.9109 - learning_rate: 1.2264e-04
+Epoch 28/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6220 - loss: 1.2553
+Epoch 28: val_accuracy did not improve from 0.73379
+  [P1] Ep  28 | train 0.6345/1.2230  val 0.7188/0.9178  gap -0.084  lr 1.15e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.6221 - loss: 1.2552 - val_accuracy: 0.7188 - val_loss: 0.9178 - learning_rate: 1.1533e-04
+Epoch 29/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6365 - loss: 1.2139
+Epoch 29: val_accuracy did not improve from 0.73379
+  [P1] Ep  29 | train 0.6389/1.2070  val 0.7286/0.8946  gap -0.090  lr 1.08e-04  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6366 - loss: 1.2139 - val_accuracy: 0.7286 - val_loss: 0.8946 - learning_rate: 1.0794e-04
+Epoch 30/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6363 - loss: 1.2173
+Epoch 30: val_accuracy improved from 0.73379 to 0.74333, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  30 | train 0.6389/1.2036  val 0.7433/0.8719  gap -0.104  lr 1.01e-04  ✓
+           ★ New best val_acc: 0.7433 (epoch 30)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.6363 - loss: 1.2172 - val_accuracy: 0.7433 - val_loss: 0.8719 - learning_rate: 1.0050e-04
+Epoch 31/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6380 - loss: 1.2163
+Epoch 31: val_accuracy did not improve from 0.74333
+  [P1] Ep  31 | train 0.6375/1.2157  val 0.7427/0.8781  gap -0.105  lr 9.31e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6380 - loss: 1.2163 - val_accuracy: 0.7427 - val_loss: 0.8781 - learning_rate: 9.3064e-05
+Epoch 32/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 42ms/step - accuracy: 0.6496 - loss: 1.1939
+Epoch 32: val_accuracy did not improve from 0.74333
+  [P1] Ep  32 | train 0.6501/1.1956  val 0.7335/0.8906  gap -0.083  lr 8.57e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 37s 45ms/step - accuracy: 0.6496 - loss: 1.1939 - val_accuracy: 0.7335 - val_loss: 0.8906 - learning_rate: 8.5670e-05
+Epoch 33/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6499 - loss: 1.1905
+Epoch 33: val_accuracy improved from 0.74333 to 0.75000, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  33 | train 0.6538/1.1867  val 0.7500/0.8665  gap -0.096  lr 7.84e-05  ✓
+           ★ New best val_acc: 0.7500 (epoch 33)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 43ms/step - accuracy: 0.6499 - loss: 1.1904 - val_accuracy: 0.7500 - val_loss: 0.8665 - learning_rate: 7.8359e-05
+Epoch 34/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6617 - loss: 1.1575
+Epoch 34: val_accuracy improved from 0.75000 to 0.75091, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  34 | train 0.6683/1.1525  val 0.7509/0.8503  gap -0.083  lr 7.12e-05  ✓
+           ★ New best val_acc: 0.7509 (epoch 34)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6617 - loss: 1.1574 - val_accuracy: 0.7509 - val_loss: 0.8503 - learning_rate: 7.1172e-05
+Epoch 35/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6746 - loss: 1.1405
+Epoch 35: val_accuracy improved from 0.75091 to 0.76030, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  35 | train 0.6714/1.1491  val 0.7603/0.8358  gap -0.089  lr 6.41e-05  ✓
+           ★ New best val_acc: 0.7603 (epoch 35)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6746 - loss: 1.1406 - val_accuracy: 0.7603 - val_loss: 0.8358 - learning_rate: 6.4149e-05
+Epoch 36/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6598 - loss: 1.1620
+Epoch 36: val_accuracy improved from 0.76030 to 0.76439, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  36 | train 0.6631/1.1618  val 0.7644/0.8253  gap -0.101  lr 5.73e-05  ✓
+           ★ New best val_acc: 0.7644 (epoch 36)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6598 - loss: 1.1620 - val_accuracy: 0.7644 - val_loss: 0.8253 - learning_rate: 5.7329e-05
+Epoch 37/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6748 - loss: 1.1431
+Epoch 37: val_accuracy improved from 0.76439 to 0.76652, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  37 | train 0.6723/1.1492  val 0.7665/0.8203  gap -0.094  lr 5.08e-05  ✓
+           ★ New best val_acc: 0.7665 (epoch 37)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6748 - loss: 1.1431 - val_accuracy: 0.7665 - val_loss: 0.8203 - learning_rate: 5.0750e-05
+Epoch 38/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6608 - loss: 1.1568
+Epoch 38: val_accuracy improved from 0.76652 to 0.77136, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  38 | train 0.6711/1.1462  val 0.7714/0.8140  gap -0.100  lr 4.44e-05  ✓
+           ★ New best val_acc: 0.7714 (epoch 38)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6608 - loss: 1.1568 - val_accuracy: 0.7714 - val_loss: 0.8140 - learning_rate: 4.4450e-05
+Epoch 39/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6764 - loss: 1.1383
+Epoch 39: val_accuracy did not improve from 0.77136
+  [P1] Ep  39 | train 0.6754/1.1371  val 0.7679/0.8239  gap -0.092  lr 3.85e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.6764 - loss: 1.1383 - val_accuracy: 0.7679 - val_loss: 0.8239 - learning_rate: 3.8463e-05
+Epoch 40/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6628 - loss: 1.1660
+Epoch 40: val_accuracy improved from 0.77136 to 0.77515, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  40 | train 0.6697/1.1558  val 0.7752/0.8105  gap -0.105  lr 3.28e-05  ✓
+           ★ New best val_acc: 0.7752 (epoch 40)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6628 - loss: 1.1660 - val_accuracy: 0.7752 - val_loss: 0.8105 - learning_rate: 3.2823e-05
+Epoch 41/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6783 - loss: 1.1135
+Epoch 41: val_accuracy did not improve from 0.77515
+  [P1] Ep  41 | train 0.6763/1.1222  val 0.7723/0.8020  gap -0.096  lr 2.76e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.6783 - loss: 1.1135 - val_accuracy: 0.7723 - val_loss: 0.8020 - learning_rate: 2.7561e-05
+Epoch 42/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6782 - loss: 1.1372
+Epoch 42: val_accuracy did not improve from 0.77515
+  [P1] Ep  42 | train 0.6833/1.1226  val 0.7711/0.7991  gap -0.088  lr 2.27e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.6782 - loss: 1.1372 - val_accuracy: 0.7711 - val_loss: 0.7991 - learning_rate: 2.2708e-05
+Epoch 43/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.6715 - loss: 1.1286
+Epoch 43: val_accuracy did not improve from 0.77515
+  [P1] Ep  43 | train 0.6819/1.1184  val 0.7742/0.7998  gap -0.092  lr 1.83e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.6715 - loss: 1.1286 - val_accuracy: 0.7742 - val_loss: 0.7998 - learning_rate: 1.8289e-05
+Epoch 44/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step - accuracy: 0.6836 - loss: 1.1282
+Epoch 44: val_accuracy did not improve from 0.77515
+  [P1] Ep  44 | train 0.6812/1.1228  val 0.7733/0.8039  gap -0.092  lr 1.43e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 31s 38ms/step - accuracy: 0.6836 - loss: 1.1282 - val_accuracy: 0.7733 - val_loss: 0.8039 - learning_rate: 1.4330e-05
+Epoch 45/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6847 - loss: 1.1201
+Epoch 45: val_accuracy improved from 0.77515 to 0.78091, saving model to /kaggle/working/models/CustomSEResNet_p1_best.keras
+  [P1] Ep  45 | train 0.6891/1.1139  val 0.7809/0.7921  gap -0.092  lr 1.09e-05  ✓
+           ★ New best val_acc: 0.7809 (epoch 45)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6847 - loss: 1.1201 - val_accuracy: 0.7809 - val_loss: 0.7921 - learning_rate: 1.0854e-05
+Epoch 46/50
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6981 - loss: 1.1044
+Epoch 46: val_accuracy did not improve from 0.78091
+  [P1] Ep  46 | train 0.6956/1.1122  val 0.7758/0.7925  gap -0.080  lr 7.88e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6981 - loss: 1.1044 - val_accuracy: 0.7758 - val_loss: 0.7925 - learning_rate: 7.8781e-06
+Epoch 47/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6847 - loss: 1.1219
+Epoch 47: val_accuracy did not improve from 0.78091
+  [P1] Ep  47 | train 0.6875/1.1195  val 0.7800/0.7879  gap -0.092  lr 5.42e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6847 - loss: 1.1219 - val_accuracy: 0.7800 - val_loss: 0.7879 - learning_rate: 5.4205e-06
+Epoch 48/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6973 - loss: 1.1002
+Epoch 48: val_accuracy did not improve from 0.78091
+  [P1] Ep  48 | train 0.6908/1.1171  val 0.7794/0.7890  gap -0.089  lr 3.49e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.6973 - loss: 1.1002 - val_accuracy: 0.7794 - val_loss: 0.7890 - learning_rate: 3.4947e-06
+Epoch 49/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6861 - loss: 1.1235
+Epoch 49: val_accuracy did not improve from 0.78091
+  [P1] Ep  49 | train 0.6884/1.1118  val 0.7806/0.7885  gap -0.092  lr 2.11e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6861 - loss: 1.1235 - val_accuracy: 0.7806 - val_loss: 0.7885 - learning_rate: 2.1113e-06
+Epoch 50/50
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6885 - loss: 1.1277
+Epoch 50: val_accuracy did not improve from 0.78091
+  [P1] Ep  50 | train 0.6902/1.1223  val 0.7808/0.7904  gap -0.091  lr 1.28e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.6885 - loss: 1.1277 - val_accuracy: 0.7808 - val_loss: 0.7904 - learning_rate: 1.2782e-06
+
+  [P1] Best val_acc: 0.7809 at epoch 45
+
+
+======================================================================
+  CustomSEResNet | Phase 2 — AdamW  peak LR=4e-5  30 ep  patience=10
+======================================================================
+Epoch 1/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6837 - loss: 1.0773
+Epoch 1: val_accuracy improved from -inf to 0.77424, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep   1 | train 0.6859/1.0729  val 0.7742/0.7234  gap -0.088  lr 2.00e-05  ✓
+           ★ New best val_acc: 0.7742 (epoch 1)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 89s 49ms/step - accuracy: 0.6837 - loss: 1.0773 - val_accuracy: 0.7742 - val_loss: 0.7234 - learning_rate: 2.0000e-05
+Epoch 2/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6924 - loss: 1.0483
+Epoch 2: val_accuracy improved from 0.77424 to 0.77576, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep   2 | train 0.6883/1.0662  val 0.7758/0.7309  gap -0.087  lr 4.00e-05  ✓
+           ★ New best val_acc: 0.7758 (epoch 2)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6924 - loss: 1.0483 - val_accuracy: 0.7758 - val_loss: 0.7309 - learning_rate: 4.0000e-05
+Epoch 3/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step - accuracy: 0.6830 - loss: 1.0685
+Epoch 3: val_accuracy did not improve from 0.77576
+  [P2] Ep   3 | train 0.6825/1.0776  val 0.7686/0.7375  gap -0.086  lr 4.00e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 42ms/step - accuracy: 0.6830 - loss: 1.0685 - val_accuracy: 0.7686 - val_loss: 0.7375 - learning_rate: 4.0000e-05
+Epoch 4/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6832 - loss: 1.0791
+Epoch 4: val_accuracy did not improve from 0.77576
+  [P2] Ep   4 | train 0.6834/1.0818  val 0.7685/0.7359  gap -0.085  lr 3.99e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6832 - loss: 1.0791 - val_accuracy: 0.7685 - val_loss: 0.7359 - learning_rate: 3.9875e-05
+Epoch 5/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6927 - loss: 1.0660
+Epoch 5: val_accuracy improved from 0.77576 to 0.77591, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep   5 | train 0.6866/1.0656  val 0.7759/0.7172  gap -0.089  lr 3.95e-05  ✓
+           ★ New best val_acc: 0.7759 (epoch 5)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6927 - loss: 1.0660 - val_accuracy: 0.7759 - val_loss: 0.7172 - learning_rate: 3.9500e-05
+Epoch 6/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6876 - loss: 1.0508
+Epoch 6: val_accuracy improved from 0.77591 to 0.77803, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep   6 | train 0.6898/1.0644  val 0.7780/0.7196  gap -0.088  lr 3.89e-05  ✓
+           ★ New best val_acc: 0.7780 (epoch 6)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 35s 42ms/step - accuracy: 0.6876 - loss: 1.0508 - val_accuracy: 0.7780 - val_loss: 0.7196 - learning_rate: 3.8880e-05
+Epoch 7/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.6666 - loss: 1.0970
+Epoch 7: val_accuracy did not improve from 0.77803
+  [P2] Ep   7 | train 0.6755/1.0911  val 0.7750/0.7319  gap -0.099  lr 3.80e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6666 - loss: 1.0970 - val_accuracy: 0.7750 - val_loss: 0.7319 - learning_rate: 3.8024e-05
+Epoch 8/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6901 - loss: 1.0500
+Epoch 8: val_accuracy did not improve from 0.77803
+  [P2] Ep   8 | train 0.6874/1.0638  val 0.7748/0.7277  gap -0.087  lr 3.69e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6901 - loss: 1.0501 - val_accuracy: 0.7748 - val_loss: 0.7277 - learning_rate: 3.6942e-05
+Epoch 9/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6758 - loss: 1.0833
+Epoch 9: val_accuracy did not improve from 0.77803
+  [P2] Ep   9 | train 0.6865/1.0737  val 0.7697/0.7345  gap -0.083  lr 3.56e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 39ms/step - accuracy: 0.6758 - loss: 1.0833 - val_accuracy: 0.7697 - val_loss: 0.7345 - learning_rate: 3.5648e-05
+Epoch 10/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6984 - loss: 1.0528
+Epoch 10: val_accuracy did not improve from 0.77803
+  [P2] Ep  10 | train 0.7003/1.0545  val 0.7748/0.7215  gap -0.075  lr 3.42e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6984 - loss: 1.0528 - val_accuracy: 0.7748 - val_loss: 0.7215 - learning_rate: 3.4157e-05
+Epoch 11/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6963 - loss: 1.0356
+Epoch 11: val_accuracy improved from 0.77803 to 0.78273, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  11 | train 0.7003/1.0312  val 0.7827/0.7136  gap -0.082  lr 3.25e-05  ✓
+           ★ New best val_acc: 0.7827 (epoch 11)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6963 - loss: 1.0356 - val_accuracy: 0.7827 - val_loss: 0.7136 - learning_rate: 3.2489e-05
+Epoch 12/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6891 - loss: 1.0559
+Epoch 12: val_accuracy did not improve from 0.78273
+  [P2] Ep  12 | train 0.6986/1.0429  val 0.7792/0.7112  gap -0.081  lr 3.07e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 39ms/step - accuracy: 0.6891 - loss: 1.0559 - val_accuracy: 0.7792 - val_loss: 0.7112 - learning_rate: 3.0664e-05
+Epoch 13/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.6974 - loss: 1.0492
+Epoch 13: val_accuracy did not improve from 0.78273
+  [P2] Ep  13 | train 0.7009/1.0406  val 0.7827/0.7102  gap -0.082  lr 2.87e-05  ✓
+           ★ New best val_acc: 0.7827 (epoch 11)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6974 - loss: 1.0491 - val_accuracy: 0.7827 - val_loss: 0.7102 - learning_rate: 2.8706e-05
+Epoch 14/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6956 - loss: 1.0431
+Epoch 14: val_accuracy did not improve from 0.78273
+  [P2] Ep  14 | train 0.6986/1.0463  val 0.7705/0.7361  gap -0.072  lr 2.66e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.6956 - loss: 1.0431 - val_accuracy: 0.7705 - val_loss: 0.7361 - learning_rate: 2.6639e-05
+Epoch 15/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6892 - loss: 1.0645
+Epoch 15: val_accuracy improved from 0.78273 to 0.78379, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  15 | train 0.6917/1.0524  val 0.7838/0.7016  gap -0.092  lr 2.45e-05  ✓
+           ★ New best val_acc: 0.7838 (epoch 15)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 40ms/step - accuracy: 0.6892 - loss: 1.0645 - val_accuracy: 0.7838 - val_loss: 0.7016 - learning_rate: 2.4489e-05
+Epoch 16/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7088 - loss: 1.0218
+Epoch 16: val_accuracy did not improve from 0.78379
+  [P2] Ep  16 | train 0.7061/1.0251  val 0.7829/0.7104  gap -0.077  lr 2.23e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.7088 - loss: 1.0219 - val_accuracy: 0.7829 - val_loss: 0.7104 - learning_rate: 2.2284e-05
+Epoch 17/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7114 - loss: 0.9967
+Epoch 17: val_accuracy improved from 0.78379 to 0.78515, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  17 | train 0.7092/1.0064  val 0.7852/0.6980  gap -0.076  lr 2.00e-05  ✓
+           ★ New best val_acc: 0.7852 (epoch 17)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.7114 - loss: 0.9967 - val_accuracy: 0.7852 - val_loss: 0.6980 - learning_rate: 2.0050e-05
+Epoch 18/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6959 - loss: 1.0458
+Epoch 18: val_accuracy improved from 0.78515 to 0.78530, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  18 | train 0.7023/1.0335  val 0.7853/0.6967  gap -0.083  lr 1.78e-05  ✓
+           ★ New best val_acc: 0.7853 (epoch 18)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6960 - loss: 1.0458 - val_accuracy: 0.7853 - val_loss: 0.6967 - learning_rate: 1.7816e-05
+Epoch 19/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7054 - loss: 1.0450
+Epoch 19: val_accuracy did not improve from 0.78530
+  [P2] Ep  19 | train 0.7019/1.0399  val 0.7805/0.7059  gap -0.079  lr 1.56e-05  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.7054 - loss: 1.0450 - val_accuracy: 0.7805 - val_loss: 0.7059 - learning_rate: 1.5611e-05
+Epoch 20/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step - accuracy: 0.7022 - loss: 1.0403
+Epoch 20: val_accuracy improved from 0.78530 to 0.78621, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  20 | train 0.7000/1.0493  val 0.7862/0.6997  gap -0.086  lr 1.35e-05  ✓
+           ★ New best val_acc: 0.7862 (epoch 20)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 36s 43ms/step - accuracy: 0.7022 - loss: 1.0403 - val_accuracy: 0.7862 - val_loss: 0.6997 - learning_rate: 1.3461e-05
+Epoch 21/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.6987 - loss: 1.0282
+Epoch 21: val_accuracy improved from 0.78621 to 0.78955, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  21 | train 0.7126/0.9966  val 0.7895/0.6886  gap -0.077  lr 1.14e-05  ✓
+           ★ New best val_acc: 0.7895 (epoch 21)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.6987 - loss: 1.0281 - val_accuracy: 0.7895 - val_loss: 0.6886 - learning_rate: 1.1394e-05
+Epoch 22/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7056 - loss: 1.0314
+Epoch 22: val_accuracy did not improve from 0.78955
+  [P2] Ep  22 | train 0.7117/1.0203  val 0.7894/0.6904  gap -0.078  lr 9.44e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.7056 - loss: 1.0314 - val_accuracy: 0.7894 - val_loss: 0.6904 - learning_rate: 9.4360e-06
+Epoch 23/30
+824/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7152 - loss: 1.0166
+Epoch 23: val_accuracy did not improve from 0.78955
+  [P2] Ep  23 | train 0.7036/1.0383  val 0.7885/0.6964  gap -0.085  lr 7.61e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 39ms/step - accuracy: 0.7152 - loss: 1.0167 - val_accuracy: 0.7885 - val_loss: 0.6964 - learning_rate: 7.6114e-06
+Epoch 24/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 37ms/step - accuracy: 0.7142 - loss: 1.0093
+Epoch 24: val_accuracy improved from 0.78955 to 0.79106, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  24 | train 0.7116/1.0195  val 0.7911/0.6920  gap -0.079  lr 5.94e-06  ✓
+           ★ New best val_acc: 0.7911 (epoch 24)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 34s 41ms/step - accuracy: 0.7142 - loss: 1.0093 - val_accuracy: 0.7911 - val_loss: 0.6920 - learning_rate: 5.9432e-06
+Epoch 25/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7146 - loss: 1.0105
+Epoch 25: val_accuracy improved from 0.79106 to 0.79258, saving model to /kaggle/working/models/CustomSEResNet_p2_best.keras
+  [P2] Ep  25 | train 0.7104/1.0261  val 0.7926/0.6888  gap -0.082  lr 4.45e-06  ✓
+           ★ New best val_acc: 0.7926 (epoch 25)
+825/825 ━━━━━━━━━━━━━━━━━━━━ 33s 41ms/step - accuracy: 0.7146 - loss: 1.0105 - val_accuracy: 0.7926 - val_loss: 0.6888 - learning_rate: 4.4525e-06
+Epoch 26/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7093 - loss: 1.0306
+Epoch 26: val_accuracy did not improve from 0.79258
+  [P2] Ep  26 | train 0.7155/1.0219  val 0.7908/0.6895  gap -0.075  lr 3.16e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.7093 - loss: 1.0305 - val_accuracy: 0.7908 - val_loss: 0.6895 - learning_rate: 3.1579e-06
+Epoch 27/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7057 - loss: 1.0293
+Epoch 27: val_accuracy did not improve from 0.79258
+  [P2] Ep  27 | train 0.7142/1.0181  val 0.7897/0.6871  gap -0.075  lr 2.08e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.7058 - loss: 1.0293 - val_accuracy: 0.7897 - val_loss: 0.6871 - learning_rate: 2.0757e-06
+Epoch 28/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7160 - loss: 1.0213
+Epoch 28: val_accuracy did not improve from 0.79258
+  [P2] Ep  28 | train 0.7154/1.0114  val 0.7912/0.6885  gap -0.076  lr 1.22e-06  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.7160 - loss: 1.0213 - val_accuracy: 0.7912 - val_loss: 0.6885 - learning_rate: 1.2195e-06
+Epoch 29/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7191 - loss: 1.0152
+Epoch 29: val_accuracy did not improve from 0.79258
+  [P2] Ep  29 | train 0.7130/1.0246  val 0.7915/0.6900  gap -0.079  lr 6.00e-07  ✓
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 39ms/step - accuracy: 0.7191 - loss: 1.0152 - val_accuracy: 0.7915 - val_loss: 0.6900 - learning_rate: 6.0019e-07
+Epoch 30/30
+825/825 ━━━━━━━━━━━━━━━━━━━━ 0s 36ms/step - accuracy: 0.7175 - loss: 1.0007
+Epoch 30: val_accuracy did not improve from 0.79258
+  [P2] Ep  30 | train 0.7186/0.9968  val 0.7908/0.6866  gap -0.072  lr 2.25e-07  —  PLATEAU
+825/825 ━━━━━━━━━━━━━━━━━━━━ 32s 38ms/step - accuracy: 0.7175 - loss: 1.0007 - val_accuracy: 0.7908 - val_loss: 0.6866 - learning_rate: 2.2544e-07
+
+  [P2] Best val_acc: 0.7926 at epoch 25
+
+
+======================================================================
+  Phase 1 best: 78.09%  |  Phase 2 best: 79.26%
+  Overall best: 79.26%
+======================================================================
+
+  Running TTA (6 passes)...
+  CustomSEResNet TTA val accuracy: 80.15%
